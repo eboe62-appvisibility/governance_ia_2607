@@ -37,6 +37,8 @@ services:
 #      - MODEL_SONNET=gemini/gemini-2.5-pro
       - MODEL=nvidia_nim/meta/llama-3.3-70b-instruct
       - MODEL_SONNET=nvidia_nim/meta/llama-3.3-70b-instruct
+#      - MODEL=nvidia_nim/nvidia/nemotron-3-super-120b-a12b
+#      - MODEL_SONNET=nvidia_nim/meta/llama-3.3-70b-instruct
     restart: unless-stopped
 
   # PIEZA 2: La jaula de OpenCode
@@ -69,12 +71,11 @@ services:
       - CI=true
       - CLAUDE_CODE_DISABLE_ANALYTICS=true
       - CLAUDE_CODE_AUTO_COMPACT_WINDOW=190000
-      # Forzamos a Claude Code a desactivar por completo la petición de modo pensamiento en el cliente
-      - CLAUDE_CODE_THINKING_BUDGET=0
+      - CLAUDE_CODE_THINKING_BUDGET=4096
     volumes:
       - ../../:/workspace
       - ~/.gitconfig:/home/eboe62/.gitconfig:ro
     working_dir: /workspace
     stdin_open: true
     tty: true
-    command: /home/eboe62/.npm-global/bin/claude --model claude-opus-4-5-20251101
+    command: /home/eboe62/.npm-global/bin/claude --model claude-3-7-sonnet-20250219

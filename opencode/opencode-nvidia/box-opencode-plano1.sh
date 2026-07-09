@@ -3,6 +3,17 @@
 # RUNTIME EXECUTION - INTEGRATED IA CLAUDE WORKSPACE (SAFE SANDBOX)
 # Protocolo de Seguridad EOB-v2606 (Direct Mode + NVIDIA Backend)
 # ==========================================
+
+# DESESTIMADO: ESTA EJECUCION NO ES VALIDA PARA USO EN PRODUCCION. SOLO PARA PRUEBAS LOCALES DE DESARROLLO Y DEBUGGING.
+# Claude Code se inicia simulando Opus 4.5, pero el modelo (Llama) se "asusta" al ver tantas herramientas disponibles en el prompt del sistema y se vuelve loco ("However, the functions provided are numerous..."). # # Cuando le pides algo simple como un número aleatorio, el modelo dice que no tiene acceso a una función randint.
+#
+# Posibles causas:
+# Incompatibilidad de Tool Calling: Claude Code inyecta dinámicamente decenas de herramientas CLI y de sistema en el payload. Llama-3.3-70b a través de NIM no sabe cómo procesar esa estructura de herramientas al # # estilo Anthropic, confunde el formateo y asume que el usuario quiere que adivine qué función ejecutar de forma genérica.
+#
+# Al no tener capacidades nativas para entender el formato exacto de herramientas de Claude, el modelo responde con texto plano en lugar de invocar la herramienta correcta del cliente.
+#
+# Soluciones: * Claude Code es una herramienta CLI extremadamente acoplada a los modelos nativos de Anthropic. No está diseñada para proxies con Llama. Si quieres usar esta arquitectura de proxy, es preferible usar # Cline en VS Code o Aider, configurándolos en modo "Texto plano / instrucciones en Prompt" en lugar de Tool Calling nativo.
+
 set -euo pipefail
 
 # 1. Validación de Gobernanza Crítica (Variables de Entorno del Host)

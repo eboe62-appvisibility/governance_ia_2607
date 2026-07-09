@@ -28,49 +28,50 @@ USER eboe62
 RUN git clone --depth 1 https://github.com/Alishahryar1/free-claude-code.git .
 
 # --------------------------------------------------------------------------
-# OPTIMIZACIÓN DE INTERCEPTACIÓN GLOBAL: CORTOCIRCUITO NVIDIA NIM
-# Inyecta quirúrgicamente el redireccionamiento con un comentario claro y
-# remueve los presupuestos de razonamiento (thinking) en caliente.
+# OPTIMIZACIÓN DE INTERCEPTACIÓN GLOBAL: CORTOCIRCUITO GEMINI THINKING NATIVO
+# Inyecta quirúrgicamente el redireccionamiento buscando el archivo de forma
+# recursiva para evitar fallos por cambios de estructura en el upstream.
 # --------------------------------------------------------------------------
 RUN cat << 'EOF' > patch_router.py
-path = "api/model_router.py"
+import os
+import glob
+
+# Localizar recursivamente el archivo model_router.py en todo el directorio /app
+matches = glob.glob("**/model_router.py", recursive=True)
+
+if not matches:
+    print("❌ Error Fatal: No se pudo encontrar 'model_router.py' en ninguna parte del repositorio.")
+    exit(1)
+
+path = matches[0]
+print(f"📁 Archivo encontrado para parchear en: {path}")
+
 with open(path, "r") as f:
     code = f.read()
 
 target = "def resolve(self, claude_model_name: str) -> ResolvedModel:"
 
-# Construimos la inyección limpia respetando la indentación de Python (8 espacios)
+# Modificamos el retorno para usar Gemini de forma nativa con Thinking habilitado
 injection = """def resolve(self, claude_model_name: str) -> ResolvedModel:
-        # Parche Corporativo: Desactivar thinking en la peticion para evitar Error 500 en NIM
         if hasattr(self, "thinking"):
             self.thinking = None
 
-        # Sanitizar dinámicamente cualquier referencia al payload original
-        import sys
-        frame = sys._getframe(1) if hasattr(sys, "_getframe") else None
-        while frame:
-            for var_name in ["request", "messages_request", "body"]:
-                if var_name in frame.f_locals:
-                    obj = frame.f_locals[var_name]
-                    if hasattr(obj, "thinking"):
-                        obj.thinking = None
-            frame = frame.f_back
-
         return ResolvedModel(
-            original_model="claude-opus-4-5-20251101",
+            original_model="claude-3-7-sonnet-20250219",
             provider_id="gemini",
             provider_model="gemini-2.5-flash",
             provider_model_ref="gemini/gemini-2.5-flash",
-            thinking_enabled=False
+            thinking_enabled=True
         )"""
 
 if target in code:
     code = code.replace(target, injection)
     with open(path, "w") as f:
         f.write(code)
-    print("💚 Parche e inyección de comentarios aplicados con éxito")
+    print("💚 Parche e inyección para Gemini aplicados con éxito")
 else:
-    print("❌ Error: No se encontró la función objetivo")
+    print("❌ Error Critico: No se encontró la firma de la función objetivo dentro del archivo")
+    exit(1)
 EOF
 RUN python3 patch_router.py && rm patch_router.py
 
