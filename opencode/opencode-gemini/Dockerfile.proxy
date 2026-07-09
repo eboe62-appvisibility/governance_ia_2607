@@ -1,0 +1,84 @@
+# ==========================================
+# INFRASTRUCTURE GOVERNANCE — OPENCODE PROXY SIDECAR
+# ==========================================
+FROM python:3.14-slim
+
+# Instalar dependencias esenciales de sistema de forma segura
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar uv directamente desde la imagen oficial
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Configurar el usuario seguro sin privilegios (eboe62) con UID/GID 1000
+RUN groupadd -g 1000 eboe62 && \
+    useradd -u 1000 -g eboe62 -m -s /bin/bash eboe62
+
+WORKDIR /app
+RUN chown -R eboe62:eboe62 /app
+
+# Cambiamos al usuario ANTES de clonar y sincronizar con uv.
+# Esto garantiza que los symlinks creados por uv pertenezcan legítimamente a eboe62
+# y elimina el error "Permission denied (os error 13)".
+USER eboe62
+
+# Clonar fijando la rama principal estable de forma limpia
+RUN git clone --depth 1 https://github.com/Alishahryar1/free-claude-code.git .
+
+# --------------------------------------------------------------------------
+# OPTIMIZACIÓN DE INTERCEPTACIÓN GLOBAL: CORTOCIRCUITO NVIDIA NIM
+# Inyecta quirúrgicamente el redireccionamiento con un comentario claro y
+# remueve los presupuestos de razonamiento (thinking) en caliente.
+# --------------------------------------------------------------------------
+RUN cat << 'EOF' > patch_router.py
+path = "api/model_router.py"
+with open(path, "r") as f:
+    code = f.read()
+
+target = "def resolve(self, claude_model_name: str) -> ResolvedModel:"
+
+# Construimos la inyección limpia respetando la indentación de Python (8 espacios)
+injection = """def resolve(self, claude_model_name: str) -> ResolvedModel:
+        # Parche Corporativo: Desactivar thinking en la peticion para evitar Error 500 en NIM
+        if hasattr(self, "thinking"):
+            self.thinking = None
+
+        # Sanitizar dinámicamente cualquier referencia al payload original
+        import sys
+        frame = sys._getframe(1) if hasattr(sys, "_getframe") else None
+        while frame:
+            for var_name in ["request", "messages_request", "body"]:
+                if var_name in frame.f_locals:
+                    obj = frame.f_locals[var_name]
+                    if hasattr(obj, "thinking"):
+                        obj.thinking = None
+            frame = frame.f_back
+
+        return ResolvedModel(
+            original_model="claude-opus-4-5-20251101",
+            provider_id="gemini",
+            provider_model="gemini-2.5-flash",
+            provider_model_ref="gemini/gemini-2.5-flash",
+            thinking_enabled=False
+        )"""
+
+if target in code:
+    code = code.replace(target, injection)
+    with open(path, "w") as f:
+        f.write(code)
+    print("💚 Parche e inyección de comentarios aplicados con éxito")
+else:
+    print("❌ Error: No se encontró la función objetivo")
+EOF
+RUN python3 patch_router.py && rm patch_router.py
+
+# Sincronizar dependencias con uv
+RUN uv sync
+
+# Exponer el puerto del backend del proxy corporativo
+EXPOSE 8082
+
+# Ejecutar usando la herramienta de entorno virtual de uv según el estándar del proyecto
+CMD ["uv", "run", "fcc-server", "--host", "0.0.0.0", "--port", "8082"]

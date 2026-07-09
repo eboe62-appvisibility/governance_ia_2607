@@ -14,7 +14,7 @@ services:
     networks:
       - ia-net
     environment:
-      - ANTHROPIC_API_KEY
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     ports:
       - "8000:8000"
     restart: unless-stopped
