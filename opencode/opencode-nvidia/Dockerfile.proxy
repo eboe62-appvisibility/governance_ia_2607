@@ -60,7 +60,7 @@ injection = """def resolve(self, claude_model_name: str) -> ResolvedModel:
         if hasattr(self, "thinking"):
             self.thinking = None
 
-        # Capturar variable de entorno o asignar DeepSeek R1 por defecto
+        # Capturar variable de entorno o asignar por defecto
         raw_model = os.getenv("MODEL_SONNET") or os.getenv("MODEL") or "meta/llama-3.3-70b-instruct"
 
         # Limpieza estricta de cualquier prefijo para evitar que la URL de la API falle con 404
@@ -80,9 +80,9 @@ if target in code:
     code = code.replace(target, injection)
     with open(path, "w") as f:
         f.write(code)
-    print("💚 Parche dinámico anti-500 para NVIDIA NIM inyectado")
+    print("💚 Parche e inyección para NVIDIA NIM aplicados con éxito")
 else:
-    print("❌ Error Crítico: No se encontró la firma de la función")
+    print("❌ Error Crítico: No se encontró la firma de la función objetivo dentro del archivo")
     exit(1)
 EOF
 RUN python3 patch_router.py && rm patch_router.py

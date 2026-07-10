@@ -28,9 +28,10 @@ USER eboe62
 RUN git clone --depth 1 https://github.com/Alishahryar1/free-claude-code.git .
 
 # --------------------------------------------------------------------------
-# OPTIMIZACIÓN DE INTERCEPTACIÓN GLOBAL: CORTOCIRCUITO GEMINI THINKING NATIVO
+# OPTIMIZACIÓN DE INTERCEPTACIÓN GLOBAL: CORTOCIRCUITO DINÁMICO GEMINI
 # Inyecta quirúrgicamente el redireccionamiento buscando el archivo de forma
-# recursiva para evitar fallos por cambios de estructura en el upstream.
+# recursiva para evitar fallos por cambios de estructura en el upstream
+# y normaliza el identificador
 # --------------------------------------------------------------------------
 RUN cat << 'EOF' > patch_router.py
 import os
@@ -51,17 +52,24 @@ with open(path, "r") as f:
 
 target = "def resolve(self, claude_model_name: str) -> ResolvedModel:"
 
-# Modificamos el retorno para usar Gemini de forma nativa con Thinking habilitado
+# Modificamos el retorno para usar Gemini de forma nativa con Thinking deshabilitado
 injection = """def resolve(self, claude_model_name: str) -> ResolvedModel:
+        import os
         if hasattr(self, "thinking"):
             self.thinking = None
 
+        # Capturar variable de entorno o asignar por defecto
+        raw_model = os.getenv("MODEL_SONNET") or os.getenv("MODEL") or "gemini/gemini-2.5-flash"
+
+        # Limpieza estricta de cualquier prefijo para evitar que la URL de la API falle con 404
+        env_model = raw_model.replace("gemini/", "")
+
         return ResolvedModel(
-            original_model="claude-3-7-sonnet-20250219",
+            original_model=claude_model_name,
             provider_id="gemini",
-            provider_model="gemini-2.5-flash",
-            provider_model_ref="gemini/gemini-2.5-flash",
-            thinking_enabled=True
+            provider_model=env_model,
+            provider_model_ref=env_model,
+            thinking_enabled=False
         )"""
 
 if target in code:
@@ -70,7 +78,7 @@ if target in code:
         f.write(code)
     print("💚 Parche e inyección para Gemini aplicados con éxito")
 else:
-    print("❌ Error Critico: No se encontró la firma de la función objetivo dentro del archivo")
+    print("❌ Error Crítico: No se encontró la firma de la función objetivo dentro del archivo")
     exit(1)
 EOF
 RUN python3 patch_router.py && rm patch_router.py

@@ -37,6 +37,10 @@ services:
 #      - MODEL_SONNET=gemini/gemini-2.5-pro
 #      - MODEL=nvidia_nim/meta/llama-3.3-70b-instruct
 #      - MODEL_SONNET=nvidia_nim/meta/llama-3.3-70b-instruct
+#      - MODEL=nvidia_nim/nvidia/nemotron-4-340b-instruct
+#      - MODEL_SONNET=nvidia_nim/nvidia/nemotron-4-340b-instruct
+#      - MODEL=nvidia_nim/meta/llama-3.1-405b-instruct
+#      - MODEL_SONNET=nvidia_nim/meta/llama-3.1-405b-instruct
     restart: unless-stopped
 
   # PIEZA 2: La jaula de OpenCode
