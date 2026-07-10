@@ -30,7 +30,8 @@ RUN git clone --depth 1 https://github.com/Alishahryar1/free-claude-code.git .
 # --------------------------------------------------------------------------
 # OPTIMIZACIÓN DE INTERCEPTACIÓN GLOBAL: CORTOCIRCUITO NVIDIA NIM
 # Inyecta quirúrgicamente el redireccionamiento buscando el archivo de forma
-# recursiva para evitar fallos por cambios de estructura en el upstream.
+# recursiva para evitar fallos por cambios de estructura en el upstream
+# y normaliza el identificador
 # --------------------------------------------------------------------------
 RUN cat << 'EOF' > patch_router.py
 import os
@@ -53,14 +54,21 @@ target = "def resolve(self, claude_model_name: str) -> ResolvedModel:"
 
 # Modificamos el retorno para usar NVIDIA NIM de forma nativa con Thinking habilitado
 injection = """def resolve(self, claude_model_name: str) -> ResolvedModel:
+        import os
         if hasattr(self, "thinking"):
             self.thinking = None
 
+        # Capturar variable de entorno o asignar DeepSeek R1 por defecto
+        raw_model = os.getenv("MODEL_SONNET") or os.getenv("MODEL") or "meta/llama-3.3-70b-instruct"
+
+        # Limpieza estricta de cualquier prefijo para evitar que la URL de la API falle con 404
+        env_model = raw_model.replace("nvidia_nim/", "")
+
         return ResolvedModel(
-            original_model="claude-3-7-sonnet-20250219",
-            provider_id="gemini",
-            provider_model="gemini-2.5-flash",
-            provider_model_ref="gemini/gemini-2.5-flash",
+            original_model=claude_model_name,
+            provider_id="nvidia_nim",
+            provider_model=env_model,
+            provider_model_ref=env_model,
             thinking_enabled=True
         )"""
 
@@ -68,9 +76,9 @@ if target in code:
     code = code.replace(target, injection)
     with open(path, "w") as f:
         f.write(code)
-    print("💚 Parche e inyección para Gemini aplicados con éxito")
+    print("💚 Parche dinámico compatible con catálogo NVIDIA NIM aplicado con éxito")
 else:
-    print("❌ Error Critico: No se encontró la firma de la función objetivo dentro del archivo")
+    print("❌ Error Crítico: No se encontró la firma de la función objetivo dentro del archivo")
     exit(1)
 EOF
 RUN python3 patch_router.py && rm patch_router.py
