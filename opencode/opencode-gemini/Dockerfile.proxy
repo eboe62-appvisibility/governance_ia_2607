@@ -16,6 +16,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 RUN groupadd -g 1000 eboe62 && \
     useradd -u 1000 -g eboe62 -m -s /bin/bash eboe62
 
+# Configurar espacio de trabajo
 WORKDIR /app
 RUN chown -R eboe62:eboe62 /app
 
@@ -28,31 +29,41 @@ USER eboe62
 RUN git clone --depth 1 https://github.com/Alishahryar1/free-claude-code.git .
 
 # --------------------------------------------------------------------------
-# OPTIMIZACIÓN DE INTERCEPTACIÓN GLOBAL: CORTOCIRCUITO DINÁMICO GEMINI
+# OPTIMIZACIÓN DE INTERCEPTACIÓN: CORTOCIRCUITO DINÁMICO GEMINI
 # Inyecta quirúrgicamente el redireccionamiento buscando el archivo de forma
 # recursiva para evitar fallos por cambios de estructura en el upstream
 # y normaliza el identificador
 # --------------------------------------------------------------------------
 RUN cat << 'EOF' > patch_router.py
 import os
-import glob
 
-# Localizar recursivamente el archivo model_router.py en todo el directorio /app
-matches = glob.glob("**/model_router.py", recursive=True)
+# Firma exacta de la función que busca el upstream para mapear los modelos
+target = "def resolve(self, claude_model_name: str) -> ResolvedModel:"
+
+# Localizar recursivamente TODOS los archivos .py para buscar la firma
+matches = []
+for root, dirs, files in os.walk("."):
+    for file in files:
+        if file.endswith(".py"):
+            full_path = os.path.join(root, file)
+            try:
+                with open(full_path, "r", encoding="utf-8") as f:
+                    if target in f.read():
+                        matches.append(full_path)
+            except Exception:
+                continue
 
 if not matches:
-    print("❌ Error Fatal: No se pudo encontrar 'model_router.py' en ninguna parte del repositorio.")
+    print("❌ Error Fatal: No se encontró la firma 'def resolve(' en ningún archivo del repositorio.")
     exit(1)
 
 path = matches[0]
 print(f"📁 Archivo encontrado para parchear en: {path}")
 
-with open(path, "r") as f:
+with open(path, "r", encoding="utf-8") as f:
     code = f.read()
 
-target = "def resolve(self, claude_model_name: str) -> ResolvedModel:"
-
-# Modificamos el retorno para usar Gemini de forma nativa con Thinking deshabilitado
+# Inyección limpia para usar Gemini de forma nativa manteniendo la robustez del entorno
 injection = """def resolve(self, claude_model_name: str) -> ResolvedModel:
         import os
         if hasattr(self, "thinking"):

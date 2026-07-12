@@ -35,6 +35,8 @@ services:
 # mayor entradas por dia
 #      - MODEL=gemini/gemini-2.5-pro
 #      - MODEL_SONNET=gemini/gemini-2.5-pro
+#      - MODEL=gemini/gemini-2.0-flash
+#      - MODEL_SONNET=gemini/gemini-2.0-flash
       - MODEL=nvidia_nim/meta/llama-3.3-70b-instruct
       - MODEL_SONNET=nvidia_nim/meta/llama-3.3-70b-instruct
 #      - MODEL=nvidia_nim/nvidia/nemotron-3-super-120b-a12b
@@ -74,7 +76,7 @@ services:
       # Devolvemos los tokens de éxito simulados que Claude Code necesita para desbloquear el CLI
       - CI=true
       - CLAUDE_CODE_DISABLE_ANALYTICS=true
-      - CLAUDE_CODE_AUTO_COMPACT_WINDOW=190000
+      - CLAUDE_CODE_AUTO_COMPACT_WINDOW=80000
       - CLAUDE_CODE_THINKING_BUDGET=2048
     volumes:
       - ../../:/workspace
