@@ -12,6 +12,7 @@ Identify:
 
 * objective
 * affected systems
+* codebase structure and dependencies via `./.ua/knowledge-graph.json` (mandatory; first source of reference)
 * constraints
 * dependencies
 * existing ADRs

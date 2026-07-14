@@ -31,6 +31,12 @@ docker-compose.override.yml
 /*.bak
 *.tmp
 
+# === Understand-Anything (must be versioned independently) ===
+Understand-Anything/*.*
+
+# === Documentation working copies ===
+* copy*
+
 # === Backups de base de datos ===
 /backups/
 /backups_old/
@@ -44,9 +50,6 @@ docker-compose.override.yml
 *.key
 *.p12
 *.crt
-
-# === Documentation working copies ===
-* copy*
 
 # === Documentation Podcast, Slides, etc ===
 docs/Project_ADRs/*
