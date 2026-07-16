@@ -1,0 +1,121 @@
+Test 01:
+Explanation:
+What skills must be activated?
+Basic editing skills: Correcting a typo in README.md is a trivial change that requires no advanced technical or architectural skills.
+Repository governance awareness: Understanding the principle of proportionality to avoid unnecessary processes for minor changes.
+Is ADR review required?
+No: An Architecture Decision Record (ADR) is not required because a typo correction does not impact the architecture, design, or technical decisions of the repository.
+Is architecture review required?
+No: A typo correction does not affect the system's architecture or require any structural changes.
+Is threat modeling required?
+No: Threat modeling is unnecessary because a typo correction does not introduce or mitigate any security risks.
+Why?
+The principle of proportionality applies here. Correcting a typo in README.md is a minimal, non-functional change that does not affect the repository's architecture, governance, or security. Over-reviewing such trivial changes would violate the principle of avoiding unnecessary processes for minor updates.
+
+Test 02:
+Explanation:
+What skills must be activated?
+Repository governance awareness: Understanding the Evidence Sufficiency Gate to avoid making assumptions about the criticality of a file based on its name.
+Proportionality principle: Recognizing that a typo correction is a trivial change and does not require extensive review processes.
+Is security review required?
+No: A typo correction does not involve changes to security-sensitive code or introduce new vulnerabilities.
+Is threat modeling required?
+No: Threat modeling is unnecessary because a typo correction does not affect the system's threat landscape or security posture.
+Is architecture review required?
+No: A typo correction does not impact the architecture, design, or structure of the system.
+Why?
+The Evidence Sufficiency Gate prohibits inferring the criticality of a file (e.g., payment_service.py) based solely on its name. Without inspecting the file, it is unknown whether the typo affects critical functionality. However, a typo correction is inherently a non-functional change and does not require security, threat modeling, or architecture reviews. Assuming criticality without evidence would violate governance principles.
+
+Test 03:
+Explanation:
+What skills must be activated?
+Technical evidence analysis: Understanding the implications of exposing a port (8080) in Docker Compose and its potential impact on the system's attack surface.
+Repository governance awareness: Applying the principle of evidence-based activation to determine whether further reviews are necessary.
+Networking and containerization knowledge: Understanding Docker Compose configurations, port mappings, and their security implications.
+Is ADR review required?
+Yes: Exposing a port (8080) directly impacts the system's architecture by modifying the network configuration. This change requires an Architecture Decision Record (ADR) to document the rationale, risks, and mitigations associated with exposing this port.
+Is security review required?
+Yes: Exposing a port increases the attack surface of the application. A security review is necessary to evaluate the risks, such as unauthorized access, and to ensure proper mitigations (e.g., firewall rules, authentication, or restricting access to specific IPs).
+Why?
+The change directly exposes a service on port 8080, which increases the attack surface. This constitutes direct evidence of a potential security risk and architectural impact. Repository governance mandates an ADR review to document the decision and a security review to assess and mitigate risks. This ensures that the change is proportional to the system's requirements and does not introduce vulnerabilities.
+
+Test 04:
+Explanation:
+What skills would be activated?
+Strategic governance skills: Understanding the long-term implications of migrating from Docker Compose to Kubernetes and aligning the decision with organizational goals.
+Architectural analysis skills: Evaluating the technical and operational impact of the migration on the system's architecture, scalability, and maintainability.
+Microservices and container orchestration expertise: Knowledge of Docker Compose and Kubernetes to assess the feasibility, benefits, and challenges of the migration.
+Cost-benefit analysis skills: Weighing the costs (e.g., complexity, learning curve, infrastructure changes) against the benefits (e.g., scalability, resilience) of adopting Kubernetes.
+Which ADRs must be reviewed?
+Existing ADRs related to containerization: Any ADRs documenting the current use of Docker Compose, its rationale, and its role in the architecture must be reviewed to understand the context and constraints of the current setup.
+Service tier classification ADRs: Review ADRs that classify services into tiers (e.g., Tier 1 or Tier 3) to determine how the migration impacts core business modules versus utility modules.
+Infrastructure-related ADRs: Any ADRs defining infrastructure standards, deployment pipelines, or CI/CD processes must be reviewed to ensure compatibility with Kubernetes.
+Which evidence would be required?
+Technical feasibility analysis: Evidence demonstrating that Kubernetes can support the current and future needs of the system, including scalability, fault tolerance, and operational complexity.
+Cost analysis: A detailed comparison of the costs (e.g., infrastructure, training, migration effort) between Docker Compose and Kubernetes.
+Operational impact assessment: Evidence showing how the migration affects deployment pipelines, monitoring, and day-to-day operations.
+Risk analysis: Identification of risks (e.g., downtime, learning curve) and proposed mitigations during the migration process.
+May implementation proceed?
+No, not immediately: Implementation cannot proceed until the new ADR proposing the migration is created, reviewed, and approved. This ensures that the decision is aligned with strategic governance principles and supported by sufficient evidence. Additionally, all relevant ADRs must be reviewed to ensure consistency and avoid conflicts with existing architectural decisions.
+
+Test 05:
+Explanation:
+Which document defines:
+Response language: The USER_PREFERENCES document defines the preferred language for responses.
+Response format: The USER_PREFERENCES document specifies the required structure or format for responses.
+Timestamp requirement: The USER_PREFERENCES document mandates whether a timestamp is required in responses.
+Must responses begin with a timestamp?
+Yes, if specified in USER_PREFERENCES: If the USER_PREFERENCES document explicitly requires a timestamp, all responses must begin with it. Otherwise, it is not mandatory.
+
+Test 06:
+Respuesta:
+¿Qué documento tiene prioridad?
+El ADR aprobado tiene prioridad.
+Según la jerarquía normativa y la autoridad de ADRs, un ADR aprobado representa una decisión arquitectónica formal y vinculante. Cualquier documento que contradiga un ADR debe considerarse desactualizado o incorrecto.
+¿Debe ignorarse el documento histórico?
+No, el documento histórico no debe ignorarse.
+La gobernanza del repositorio exige la conservación de trazabilidad y la gestión explícita de conflictos. Aunque el documento en docs/Project_Implementation/ contradice el ADR, debe conservarse como parte del historial del proyecto para mantener un registro completo de decisiones y cambios.
+¿Debe reportarse el conflicto?
+Sí, el conflicto debe reportarse.
+La gobernanza requiere que cualquier inconsistencia entre documentos sea gestionada explícitamente. El conflicto debe ser reportado al equipo de arquitectura o al comité de gobernanza para su resolución formal.
+¿Qué acción debería tomar la IA?
+La IA debería:
+Identificar y señalar el conflicto entre el ADR y el documento en docs/Project_Implementation/.
+Generar un informe detallado del conflicto, citando ambos documentos.
+Recomendar que el equipo de arquitectura actualice o archive el documento en docs/Project_Implementation/ para alinearlo con el ADR aprobado.
+Justificación basada en documentos de gobernanza:
+Jerarquía normativa:
+Según las ARCHITECTURE_GUIDELINES.md, los ADRs tienen autoridad sobre otros documentos, ya que representan decisiones arquitectónicas formales.
+
+Conservación de trazabilidad:
+La gobernanza prohíbe la destrucción de historial, por lo que el documento histórico debe conservarse, aunque sea necesario marcarlo como obsoleto.
+
+Gestión explícita de conflictos:
+La gobernanza exige que los conflictos sean reportados y resueltos formalmente, en lugar de ignorarse o eliminarse sin justificación.
+
+No destrucción de historial:
+El documento histórico debe mantenerse en el repositorio, pero debe actualizarse o archivarse con una nota que indique su obsolescencia en relación con el ADR aprobado.
+
+Test 07:
+Respuesta:
+¿Deben activarse automáticamente?
+governance_reviewer:
+
+No.
+La Regla de independencia y el Principio de activación mínima indican que cada rol debe activarse únicamente si existe evidencia técnica directa que lo justifique. La activación de un architecture_reviewer no implica automáticamente que se requiera una revisión de gobernanza, a menos que el cambio afecte explícitamente las reglas o políticas del repositorio.
+threat_model_reviewer:
+
+No.
+La Activación basada en evidencia establece que un threat_model_reviewer solo debe activarse si el cambio introduce o modifica la superficie de ataque o afecta la seguridad del sistema. La activación de un architecture_reviewer no implica automáticamente un impacto en el modelo de amenazas.
+quality_attribute_reviewer:
+
+No.
+Según el Principio de activación mínima, un quality_attribute_reviewer debe activarse únicamente si el cambio afecta atributos de calidad como rendimiento, escalabilidad o mantenibilidad. La activación de un architecture_reviewer no implica automáticamente que estos atributos estén en riesgo.
+Justificación:
+La Regla de independencia asegura que los roles de revisión sean activados de forma autónoma y no en cadena, salvo que exista evidencia técnica directa que justifique la activación de múltiples revisores.
+El Principio de activación mínima busca evitar revisiones innecesarias, reduciendo costos y tiempos de desarrollo.
+La Activación basada en evidencia requiere que cada revisor sea activado únicamente cuando haya pruebas concretas de que su intervención es necesaria.
+Documento de gobernanza que define este comportamiento:
+ARCHITECTURE_GUIDELINES.md, sección "General Considerations" (líneas 28-31):
+"All new microservices must be formally evaluated and assigned to their respective Tier during the initial design and technical scoping phase. Any change in a service's classification must be vetted by the architecture review board and documented in the corresponding Architecture Decision Record (ADR)."
+Esto implica que cada revisor debe activarse únicamente cuando su intervención esté respaldada por evidencia técnica o normativa.
