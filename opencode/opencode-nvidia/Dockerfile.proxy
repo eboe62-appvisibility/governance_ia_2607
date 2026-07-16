@@ -1,0 +1,104 @@
+# ==========================================
+# INFRASTRUCTURE GOVERNANCE — OPENCODE PROXY SIDECAR
+# ==========================================
+FROM python:3.14-slim
+
+# Instalar dependencias esenciales de sistema de forma segura
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar uv directamente desde la imagen oficial
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Configurar el usuario seguro sin privilegios (eboe62) con UID/GID 1000
+RUN groupadd -g 1000 eboe62 && \
+    useradd -u 1000 -g eboe62 -m -s /bin/bash eboe62
+
+# Configurar espacio de trabajo
+WORKDIR /app
+RUN chown -R eboe62:eboe62 /app
+
+# Cambiamos al usuario ANTES de clonar y sincronizar con uv.
+# Esto garantiza que los symlinks creados por uv pertenezcan legítimamente a eboe62
+# y elimina el error "Permission denied (os error 13)".
+USER eboe62
+
+# Clonar fijando la rama principal estable de forma limpia
+RUN git clone --depth 1 https://github.com/Alishahryar1/free-claude-code.git .
+
+# --------------------------------------------------------------------------
+# OPTIMIZACIÓN DE INTERCEPTACIÓN: CORTOCIRCUITO DINÁMICO NVIDIA NIM
+# Inyecta quirúrgicamente el redireccionamiento buscando el archivo de forma
+# recursiva para evitar fallos por cambios de estructura en el upstream
+# y normaliza el identificador
+# --------------------------------------------------------------------------
+RUN cat << 'EOF' > patch_router.py
+import os
+
+# Firma exacta de la función que busca el upstream para mapear los modelos
+target = "def resolve(self, claude_model_name: str) -> ResolvedModel:"
+
+# Localizar recursivamente TODOS los archivos .py para buscar la firma
+matches = []
+for root, dirs, files in os.walk("."):
+    for file in files:
+        if file.endswith(".py"):
+            full_path = os.path.join(root, file)
+            try:
+                with open(full_path, "r", encoding="utf-8") as f:
+                    if target in f.read():
+                        matches.append(full_path)
+            except Exception:
+                continue
+
+if not matches:
+    print("❌ Error Fatal: No se encontró la firma 'def resolve(' en ningún archivo del repositorio.")
+    exit(1)
+
+path = matches[0]
+print(f"📁 Archivo encontrado para parchear en: {path}")
+
+with open(path, "r", encoding="utf-8") as f:
+    code = f.read()
+
+# Inyección limpia para usar Gemini de forma nativa manteniendo la robustez del entorno
+injection = """def resolve(self, claude_model_name: str) -> ResolvedModel:
+        import os
+        if hasattr(self, "thinking"):
+            self.thinking = None
+
+        # Capturar variable de entorno o asignar por defecto
+        raw_model = os.getenv("MODEL_SONNET") or os.getenv("MODEL") or "meta/llama-3.3-70b-instruct"
+
+        # Limpieza estricta de cualquier prefijo para evitar que la URL de la API falle con 404
+        env_model = raw_model.replace("nvidia_nim/", "")
+
+        return ResolvedModel(
+            original_model=claude_model_name,
+            provider_id="nvidia_nim",
+            provider_model=env_model,
+            provider_model_ref=env_model,
+            thinking_enabled=False
+        )"""
+
+if target in code:
+    code = code.replace(target, injection)
+    with open(path, "w") as f:
+        f.write(code)
+    print("💚 Parche e inyección para NVIDIA NIM aplicados con éxito")
+else:
+    print("❌ Error Crítico: No se encontró la firma de la función objetivo dentro del archivo")
+    exit(1)
+EOF
+RUN python3 patch_router.py && rm patch_router.py
+
+# Sincronizar dependencias con uv
+RUN uv sync
+
+# Exponer el puerto del backend del proxy corporativo
+EXPOSE 8082
+
+# Ejecutar usando la herramienta de entorno virtual de uv según el estándar del proyecto
+CMD ["uv", "run", "fcc-server", "--host", "0.0.0.0", "--port", "8082"]

@@ -1,0 +1,31 @@
+# ==========================================
+# RUNTIME INTERACTIVE CLI — CLAUDE SANDBOX (OPENCODE)
+# ==========================================
+FROM node:22-slim
+
+# Instalar dependencias esenciales (Git es obligatorio para que Claude Code funcione)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Modificar el usuario 1000 existente (node) para adaptarlo a tu entorno corporativo
+RUN usermod -l eboe62 node && \
+    groupmod -n eboe62 node && \
+    usermod -d /home/eboe62 -m eboe62
+
+# Definir variables de entorno para la instalación global de npm sin requerir root
+ENV NPM_CONFIG_PREFIX=/home/eboe62/.npm-global
+ENV PATH=/home/eboe62/.npm-global/bin:$PATH
+
+USER eboe62
+WORKDIR /workspace
+
+# Crear el directorio para los binarios globales de npm
+RUN mkdir -p /home/eboe62/.npm-global
+
+# Instalar Claude Code CLI de manera global dentro del entorno de usuario seguro
+RUN npm install -g @anthropic-ai/claude-code
+
+# Declarar el punto de entrada predeterminado
+ENTRYPOINT ["/home/eboe62/.npm-global/bin/claude"]

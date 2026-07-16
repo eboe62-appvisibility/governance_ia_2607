@@ -88,3 +88,98 @@ A change is complete only when:
 * validation passed
 * documentation updated
 * rollback documented
+
+## Evidence Requirements
+
+Execution proposals must identify:
+
+* evidence supporting the change
+* highest evidence level
+* validation gaps
+
+Execution based solely on E0 hypotheses is prohibited.
+
+Execution based solely on E1 or E2 requires explicit justification.
+
+E3 or higher is preferred whenever available.
+
+## Confidence Requirements
+
+Execution recommendations must include:
+
+* evidence level
+* confidence level
+* validation gaps
+
+Execution should normally require:
+
+Confidence:
+HIGH
+
+or greater.
+
+Execution proposals with:
+
+Confidence:
+LOW
+
+or
+
+INSUFFICIENT
+
+are prohibited unless explicitly authorized by the user.
+
+Validation should be preferred over implementation whenever confidence is insufficient.
+
+## Governance Conflict Validation
+
+Before execution:
+
+Verify that:
+
+* ADRs
+* governance documents
+* correction plans
+* implementation requirements
+
+do not conflict.
+
+If conflicts exist:
+
+Activate:
+
+governance_arbiter
+
+Execution must be suspended until the conflict is resolved.
+
+## Authority Validation
+
+Before execution:
+
+Verify authority hierarchy compliance.
+
+Authority conflicts must be resolved before implementation begins.
+
+Use:
+
+docs/governance/AUTHORITY_HIERARCHY.md
+
+## ADR Authority Validation
+
+Before implementing ADR-driven changes:
+
+Verify:
+
+docs/architecture/ADR_INDEX.md
+
+Implementation based on superseded ADRs is prohibited.
+
+## Skill Authority Validation
+
+Execution workflows may only rely on:
+
+ACTIVE
+
+skills registered in:
+
+docs/governance/SKILL_REGISTRY.md
