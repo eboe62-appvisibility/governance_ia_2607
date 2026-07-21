@@ -1,4 +1,5 @@
 # Task Classification Model
+(What type of task is being solved? - describes how tasks are classified before analysis or execution)
 
 ## Purpose
 
@@ -6,11 +7,11 @@ This document defines the mandatory task classification model used by AI assista
 
 The objective is to:
 
-* reduce ambiguity
-* improve reviewer selection
-* improve governance consistency
-* improve execution safety
-* improve traceability
+- reduce ambiguity
+- improve Skill activation
+- improve governance consistency
+- improve execution safety
+- improve traceability
 
 Task classification is mandatory.
 
@@ -22,17 +23,17 @@ No analysis, recommendation, implementation proposal, or execution planning shou
 
 This document does not override:
 
-* Explicit User Instructions
-* Approved ADRs
-* AI Constitution
-* DevSecOps Principles
+- Explicit User Instructions
+- Approved ADRs
+- AI Constitution
+- Project-specific governing principles (e.g. DevSecOps Principles)
 
 Task classification is a governance mechanism used to determine:
 
-* applicable workflows
-* required evidence
-* reviewer activation
-* execution constraints
+- applicable workflows
+- required evidence
+- Skill activation
+- execution constraints
 
 ---
 
@@ -42,13 +43,14 @@ Every request must be classified into one primary task type.
 
 Allowed classifications:
 
-* ANALYSIS
-* AUDIT
-* EXECUTION
-* ADR
-* HARDENING
-* INCIDENT
-* DOCUMENTATION
+- ANALYSIS
+- AUDIT
+- EXECUTION
+- ADR
+- HARDENING
+- INCIDENT
+- DOCUMENTATION
+- LEARNING
 
 If classification is ambiguous:
 
@@ -64,42 +66,46 @@ AI assistants must never silently switch between task types.
 
 ### Objective
 
-Understand a problem, proposal, requirement, correction, architecture, or operational situation.
+Understand a problem, proposal, requirement, correction, architecture or current situation before proposing conclusions or actions.
 
 ### Outputs
 
 May produce:
 
-* findings
-* observations
-* risks
-* alternatives
-* recommendations
-* validation proposals
+- findings
+- observations
+- risks
+- alternatives
+- recommendations
+- validation proposals
 
 Must not:
 
-* modify files
-* generate implementation without explicit request
-* assume execution approval
+- modify files
+- generate implementation without explicit request
+- assume execution approval
 
 ### Typical Examples
 
-* Review Priority 8
-* Evaluate architecture
-* Compare alternatives
-* Analyze incident causes
-* Assess operational impact
+- Review Priority 8
+- Evaluate architecture
+- Compare alternatives
+- Analyze incident causes
+- Assess operational impact
 
 ### Skill Activation
 
 Evidence-based.
 
-Common examples:
+Activate only the Skills required by the task.
 
-* architecture_reviewer
-* devsecops_architect
-* governance_reviewer
+Possible examples (project dependent):
+
+- Architecture
+- Governance
+- Linguistics
+- Research
+- DevSecOps
 
 ---
 
@@ -113,33 +119,29 @@ Verify compliance against existing requirements.
 
 May produce:
 
-* compliance findings
-* non-conformities
-* gaps
-* validation results
+- compliance findings
+- non-conformities
+- gaps
+- validation results
 
 Must not:
 
-* redesign architecture
-* execute changes
+- redesign architecture
+- execute changes
 
 ### Typical Examples
 
-* ADR compliance review
-* Security validation
-* Runtime audit
-* Governance review
-* Infrastructure compliance verification
+- ADR compliance review
+- Security validation
+- Runtime audit
+- Governance review
+- Infrastructure compliance verification
 
 ### Skill Activation
 
 Evidence-based.
 
-Common examples:
-
-* governance_reviewer
-* runtime_auditor
-* docker_hardening
+Activate the Skills required to verify compliance within the relevant domains.
 
 ---
 
@@ -153,30 +155,30 @@ Implement approved changes.
 
 Must have:
 
-* explicit execution authorization
-* approved scope
-* identified files
-* rollback strategy
+- explicit execution authorization
+- approved scope
+- identified files
+- rollback strategy
 
 ### Outputs
 
 May produce:
 
-* file modifications
-* infrastructure modifications
-* implementation plans
+- file modifications
+- project modifications (e.g. infrastructure)
+- implementation plans
 
 Must not:
 
-* expand scope
-* introduce opportunistic improvements
-* redesign architecture
+- expand scope
+- introduce opportunistic improvements
+- redesign architecture
 
 ### Typical Examples
 
-* Implement approved correction
-* Apply approved ADR
-* Modify compose configuration
+- Implement approved correction
+- Apply approved ADR
+- Modify compose configuration
 
 ### Mandatory Governance
 
@@ -194,25 +196,23 @@ Create, modify, review, supersede, or evaluate architectural decisions.
 
 May produce:
 
-* ADR proposals
-* ADR reviews
-* ADR impact analysis
-* ADR conflict analysis
+- ADR proposals
+- ADR reviews
+- ADR impact analysis
+- ADR conflict analysis
 
 ### Typical Examples
 
-* Create ADR
-* Review ADR
-* Supersede ADR
-* Architectural trade-off analysis
+- Create ADR
+- Review ADR
+- Supersede ADR
+- Architectural trade-off analysis
 
 ### Skill Activation
 
 Usually:
 
-* adr_author
-* adr_reviewer
-* architecture_reviewer
+Activate Skills related to architecture, governance and decision analysis, according to the current project.
 
 ---
 
@@ -226,32 +226,31 @@ Improve security posture while preserving operational stability.
 
 May produce:
 
-* hardening proposals
-* validation plans
-* staged implementation plans
+- hardening proposals
+- validation plans
+- staged implementation plans
 
 ### Mandatory Principles
 
-* Stability over hardening
-* Evidence before action
-* Validation before enforcement
-* Progressive enforcement
+- Stability over hardening
+- Evidence before action
+- Validation before enforcement
+- Progressive enforcement
 
 ### Typical Examples
 
-* read_only evaluation
-* capability reduction
-* network restriction
-* secret hardening
+- read_only evaluation
+- capability reduction
+- network restriction
+- secret hardening
 
-### Required Reviewers
+### Required Skills
 
 Normally:
 
-* devsecops_architect
-* docker_hardening
+Activate security-related Skills appropriate to the current project.
 
-Additional reviewers based on scope.
+Additional Skills may be activated according to the task scope.
 
 ---
 
@@ -265,10 +264,10 @@ Investigate, contain, mitigate, recover, and document operational incidents.
 
 May produce:
 
-* containment plans
-* root cause analysis
-* recovery procedures
-* corrective actions
+- containment plans
+- root cause analysis
+- recovery procedures
+- corrective actions
 
 ### Priority Model
 
@@ -279,20 +278,16 @@ May produce:
 
 ### Typical Examples
 
-* Service outage
-* CI failure
-* Container startup failure
-* Security incident
+- Service outage
+- CI failure
+- Container startup failure
+- Security incident
 
 ### Skill Activation
 
 Evidence-based.
 
-Common examples:
-
-* runtime_auditor
-* resilience_and_rollback_reviewer
-* observability_reviewer
+Activate the Skills required to investigate, contain and analyse the incident according to the affected domains.
 
 ---
 
@@ -306,27 +301,58 @@ Create, update, review, or reorganize documentation.
 
 May produce:
 
-* documentation updates
-* structure improvements
-* consistency reviews
+- documentation updates
+- structure improvements
+- consistency reviews
 
 Must not:
 
-* introduce implementation changes
-* introduce architectural changes
+- introduce implementation changes
+- introduce architectural changes
 
 ### Typical Examples
 
-* README updates
-* Runbooks
-* Procedures
-* Governance documents
+- README updates
+- Runbooks
+- Procedures
+- Governance documents
 
 ### Skill Activation
 
-Only relevant reviewers.
+Activate only the Skills relevant to the requested documentation task.
 
 Apply proportional governance.
+
+---
+
+## LEARNING
+
+### Objective
+
+Acquire, explain, reinforce or assess knowledge.
+
+### Outputs
+
+May produce:
+
+- explanations
+- tutoring
+- exercises
+- quizzes
+- study plans
+- translations
+- summaries
+- comparisons
+
+### Skill Activation
+
+Typical Skills
+
+Evidence-based.
+
+Activate only the Skills required for the requested learning activity.
+
+
 
 ---
 
@@ -359,6 +385,15 @@ Investigating a production failure
 Updating a README
 → DOCUMENTATION
 
+Preparing a study plan
+→ LEARNING
+
+Explaining a concept
+→ LEARNING
+
+Creating practice exercises
+→ LEARNING
+
 ---
 
 ## Mandatory Response Header
@@ -370,6 +405,9 @@ TASK TYPE:
 
 PRIMARY OBJECTIVE:
 <OBJECTIVE>
+
+ACTIVE SKILLS:
+<Determined according to task classification and available evidence>
 
 EXECUTION AUTHORIZATION:
 YES / NO

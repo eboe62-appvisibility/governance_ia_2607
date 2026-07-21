@@ -1,4 +1,5 @@
 # AI Decision Registry
+(Only major architectural decisions - describes which decisions should be preserved for future reference)
 
 ## Purpose
 
@@ -6,12 +7,12 @@ This document defines the governance framework for recording significant AI-assi
 
 The objective is to:
 
-* improve traceability
-* improve auditability
-* improve governance transparency
-* support incident investigations
-* support ADR creation
-* support decision reviews
+- improve traceability
+- improve auditability
+- improve governance transparency
+- support future decision reviews
+- support architectural or methodological decisions
+- preserve project rationale over time
 
 Not every AI interaction requires registration.
 
@@ -25,9 +26,9 @@ AI recommendations do not become authoritative automatically.
 
 Authority remains governed by:
 
-* User Instructions
-* ADRs
-* Governance Documents
+- Explicit User Instructions
+- Approved Architectural Decisions (when applicable)
+- Governance Documents
 
 Decision records provide traceability.
 
@@ -37,27 +38,33 @@ They do not create authority.
 
 ## Registration Criteria
 
-A decision should be registered when it affects:
+A decision should be registered when it significantly affects:
 
-* architecture
-* security
-* hardening
-* observability
-* deployment
-* governance
-* operational procedures
+- architecture
+- governance
+- knowledge model
+- learning model
+- security (when applicable)
+- operational procedures (when applicable)
+- project methodology
 
-Minor documentation changes do not require registration.
+Routine or editorial changes do not require registration.
+
+---
+
+## Proportionality Principle
+
+Only decisions whose future rationale is likely to be valuable should be recorded.
+
+The objective is to preserve significant knowledge, not to document every interaction with an AI assistant.
 
 ---
 
 ## Registry Location
 
-Decision records must be stored under:
+Decision records should be stored in the project's designated decision registry. (e.g. docs/ai_decisions/)
 
-docs/ai_decisions/
-
-One file per decision.
+One record per significant decision.
 
 ---
 
@@ -65,7 +72,7 @@ One file per decision.
 
 Format:
 
-YYYYMMDD-DECISION-XXXX.md
+YYYYMMDD-DECISION-XXXX.<project format>
 
 Example:
 
@@ -87,7 +94,7 @@ REJECTED
 
 SUPERSEDED
 
-ROLLED_BACK
+ROLLED BACK
 
 ---
 
@@ -105,9 +112,9 @@ Decision Status:
 
 Author:
 
-AI System:
+AI System(s):
 
-Repository Version:
+Project Version (when applicable):
 
 ---
 
@@ -175,15 +182,15 @@ Rollback Required:
 
 ## Related Artifacts
 
-ADRs:
+Architectural Decisions:
 
-Skills:
+AI Skills:
 
 Governance Documents:
 
-Correction Plans:
+Knowledge Assets (when applicable):
 
-Implementation Documents:
+Related Documentation:
 
 ---
 
@@ -205,7 +212,7 @@ REJECTED
 
 SUPERSEDED
 
-ROLLED_BACK
+ROLLED BACK
 
 ---
 
@@ -213,6 +220,7 @@ ROLLED_BACK
 
 Significant AI-assisted decisions should be traceable.
 
-Decision records improve governance visibility.
+Decision records preserve the rationale behind significant project decisions.
 
-Decision records do not create authority.
+Decision records support governance but do not create authority.
+

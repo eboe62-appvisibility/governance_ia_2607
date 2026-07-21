@@ -1,8 +1,9 @@
 # Skill Lifecycle Management
+(How AI Skills evolve - describes how AI capabilities evolve over time)
 
 ## Purpose
 
-This document defines how skills are created, reviewed, superseded, and retired.
+This document defines how AI Skills are created, reviewed, activated, superseded and retired throughout their lifecycle.
 
 ---
 
@@ -24,11 +25,11 @@ ARCHIVED
 
 Requirements:
 
-* documented purpose
-* owner
-* version
-* governance alignment
-* registry entry
+- documented purpose
+- owner
+- version
+- governance alignment
+- Skill Registry entry
 
 Until completed:
 
@@ -40,9 +41,9 @@ Status = PROPOSED
 
 Requirements:
 
-* governance review
-* registry entry
-* metadata completed
+- governance review
+- Skill Registry entry
+- required metadata completed
 
 Result:
 
@@ -54,16 +55,17 @@ Status = ACTIVE
 
 Triggers:
 
-* ADR change
-* governance change
-* annual review
-* incident review
+- architectural decision changes (when applicable)
+- governance changes
+- scheduled review
+- incident review
 
-Review must evaluate:
+Review should evaluate:
 
-* relevance
-* correctness
-* governance compliance
+- continued relevance
+- correctness
+- governance compliance
+- consistency with current project objectives
 
 ---
 
@@ -71,9 +73,10 @@ Review must evaluate:
 
 Triggers:
 
-* replacement available
-* governance change
-* obsolete functionality
+- replacement available
+- governance changes
+- obsolete functionality
+- no longer aligned with project objectives
 
 Status:
 
@@ -85,8 +88,8 @@ DEPRECATED
 
 Requirements:
 
-* replacement identified
-* registry updated
+- replacement identified
+- corresponding Skill Registry entry updated
 
 Status:
 
@@ -98,8 +101,8 @@ SUPERSEDED
 
 Requirements:
 
-* no operational value
-* retained for history
+- no active project value
+- retained for historical traceability
 
 Status:
 
@@ -109,16 +112,12 @@ ARCHIVED
 
 ## Governance Rule
 
-Skill changes are incomplete until:
-
-SKILL_REGISTRY.md
-
-has been updated.
+Skill lifecycle changes are incomplete until the corresponding Skill Registry (e.g. SKILL_REGISTRY.md) entry has been updated.
 
 ---
 
 ## Final Principle
 
-Skills are governed assets.
+Skills are governed AI capabilities.
 
-Not disposable prompts.
+Their capabilities may evolve, but their governance and lifecycle must remain traceable.

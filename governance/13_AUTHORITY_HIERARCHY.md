@@ -1,16 +1,17 @@
 # Authority Hierarchy
+(Which document takes precedence when there is a conflict? - describes which sources hold decision-making authority)
 
 ## Purpose
 
-This document defines the authoritative hierarchy used by AI assistants operating within this repository.
+This document defines the authoritative hierarchy used by AI assistants operating within this project.
 
 The objective is to:
 
-* resolve governance conflicts
-* determine source precedence
-* prevent contradictory decisions
-* ensure architectural consistency
-* provide deterministic conflict resolution
+- resolve governance conflicts
+- determine source precedence
+- prevent contradictory decisions
+- ensure architectural consistency
+- provide deterministic conflict resolution
 
 This hierarchy applies whenever two or more sources provide incompatible guidance.
 
@@ -45,10 +46,10 @@ Explicit User Instructions
 
 Examples:
 
-* direct requests
-* approved exceptions
-* approved implementation scope
-* approved operational decisions
+- direct requests
+- approved exceptions
+- approved implementation scope
+- approved operational decisions
 
 Notes:
 
@@ -58,44 +59,38 @@ User instructions always take precedence unless they would violate mandatory pla
 
 Level 2
 
-Approved ADRs
+Approved Architectural Decisions (e.g. ADRs)
 
-Authority must be determined using:
+Authority must be determined using the project's architectural decision registry (e.g. docs/architecture/ADR_INDEX.md).
 
-docs/architecture/ADR_INDEX.md
+Only architectural decisions classified as ACCEPTED are authoritative.
 
-Only ADRs classified as:
-
-ACCEPTED
-
-are authoritative.
-
-PROPOSED, SUPERSEDED and DEPRECATED ADRs are historical records.
+PROPOSED, SUPERSEDED and DEPRECATED decisions are historical records.
 
 ---
 
 Level 3
 
-Core Governance
+Core Governance Documents
 
 Examples:
 
-* 01_AI_CONSTITUTION.md
-* 02_DEVSECOPS_PRINCIPLES.md
-* 04_ARCHITECTURE_GUIDELINES.md
-* 05_ANALYSIS_PROTOCOL.md
-* 07_SKILL_ACTIVATION_MODEL.md
-* 08_TASK_CLASSIFICATION.md
-* 10_EVIDENCE_MODEL.md
-* 11_CONFIDENCE_MODEL.md
-* 13_AUTHORITY_HIERARCHY.md
-* 14_ADR_INDEX.md
-* 16_SKILL_REGISTRY.md
-* 17_SKILL_LIFECYCLE.md
-* 19_AI_DECISION_REGISTRY.md
-* 20_EXECUTION_PROTOCOL.md
-* 22_USER_PREFERENCES.md
-* 23_PROMPTING_GUIDE.md
+- 01_AI_CONSTITUTION.md
+- 02_DEVSECOPS_PRINCIPLES.md
+- 04_ARCHITECTURE_GUIDELINES.md  (when applicable)
+- 05_ANALYSIS_PROTOCOL.md
+- 07_SKILL_ACTIVATION_MODEL.md
+- 08_TASK_CLASSIFICATION.md
+- 10_EVIDENCE_MODEL.md
+- 11_CONFIDENCE_MODEL.md
+- 13_AUTHORITY_HIERARCHY.md
+- 14_ADR_INDEX.md  (when applicable)
+- 16_SKILL_REGISTRY.md
+- 17_SKILL_LIFECYCLE.md
+- 19_AI_DECISION_REGISTRY.md
+- 20_EXECUTION_PROTOCOL.md  (when applicable)
+- 22_USER_PREFERENCES.md
+- 23_PROMPTING_GUIDE.md
 
 Notes:
 
@@ -107,13 +102,13 @@ Core governance does not redefine architecture.
 
 Level 4
 
-Governance Extensions
+Governance Skills
 
-Only ACTIVE skills registered in:
+Only ACTIVE AI Skills registered in the project's Skill Registry (e.g. docs/governance/SKILL_REGISTRY.md) may provide specialised guidance within their defined domains.
 
-docs/governance/SKILL_REGISTRY.md
+AI Skills apply governance through specialised capabilities.
 
-are considered authoritative governance extensions.
+They do not create authority and they do not modify the authority hierarchy.
 
 ---
 
@@ -123,9 +118,9 @@ Approved Correction Plans
 
 Examples:
 
-* correction roadmaps
-* remediation plans
-* approved backlog items
+- correction roadmaps
+- remediation plans
+- approved backlog items
 
 Notes:
 
@@ -139,41 +134,44 @@ Correction plans do not override ADRs.
 
 Level 6
 
-Implementation Documentation
+Project Documentation
 
 Examples:
 
-* implementation status
-* deployment documentation
-* runbooks
-* operational procedures
+- implementation status
+- project documentation
+- technical procedures
+- operational procedures
+- academic documentation
+- learning materials
 
 Notes:
 
-Implementation documentation describes the system.
+Project documentation describes the project from different perspectives.
 
-Implementation documentation does not define architecture.
+Documentation may describe architecture, implementation, knowledge or learning materials, but it does not by itself establish architectural authority.
 
 ---
 
 Level 7
 
-Observed Implementation
+Observed State
 
 Examples:
 
-* runtime behaviour
-* deployed containers
-* docker inspect output
-* operational state
+- runtime behaviour
+- observed project state
+- generated outputs
+- operational state
+- knowledge graph contents
 
 Notes:
 
-Observed implementation is evidence.
+Observed state constitutes evidence.
 
-Observed implementation is not governance.
+Observed state is not governance.
 
-Observed implementation may be non-compliant.
+Observed state may be inconsistent with the project's authoritative documentation.
 
 ---
 
@@ -183,10 +181,10 @@ Analysis Outputs
 
 Examples:
 
-* reports
-* reviews
-* recommendations
-* assessments
+- reports
+- reviews
+- recommendations
+- assessments
 
 Notes:
 
@@ -202,10 +200,10 @@ Assumptions
 
 Examples:
 
-* inferred behaviour
-* expectations
-* predictions
-* hypotheses
+- inferred behaviour
+- expectations
+- predictions
+- hypotheses
 
 Notes:
 
@@ -229,7 +227,7 @@ Result:
 
 ADR governs.
 
-Implementation becomes a compliance issue.
+The implementation or project state becomes a compliance issue.
 
 ---
 
@@ -253,11 +251,11 @@ Runtime observations do not redefine governance.
 
 ### Rule 4
 
-Skills do not create governance.
+AI Skills do not create governance.
 
-Skills interpret governance.
+AI Skills apply and interpret governance within their domain of expertise.
 
-Skills cannot override governance.
+AI Skills cannot override governance.
 
 ---
 
@@ -281,11 +279,11 @@ Recommendations require approval before becoming authoritative.
 
 Escalation is required when:
 
-* two ADRs conflict
-* authority level cannot be determined
-* supersession status is unclear
-* governance documents conflict
-* evidence is insufficient
+- two ADRs conflict
+- authority level cannot be determined
+- supersession status is unclear
+- governance documents conflict
+- evidence is insufficient
 
 In such cases:
 
@@ -299,19 +297,19 @@ Do not invent a resolution.
 
 ## Relationship With Governance Arbiter
 
-The Governance Arbiter uses this hierarchy to resolve conflicts.
+Any governance conflict resolution mechanism (e.g. governance_arbiter or authority_resolver) shall use this hierarchy to resolve conflicts.
 
 The Governance Arbiter may:
 
-* identify governing sources
-* identify superseded sources
-* identify missing governance
+- identify governing sources
+- identify superseded sources
+- identify missing governance
 
 The Governance Arbiter may not:
 
-* create authority
-* override authority
-* redefine architecture
+- create authority
+- override authority
+- redefine architecture
 
 ---
 

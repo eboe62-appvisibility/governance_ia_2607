@@ -32,7 +32,7 @@ docker-compose.override.yml
 *.tmp
 
 # === Understand-Anything (must be versioned independently) ===
-Understand-Anything/*.*
+Understand-Anything/
 
 # === Documentation working copies ===
 * copy*
