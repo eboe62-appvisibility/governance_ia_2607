@@ -1,12 +1,17 @@
-# Micro-Architecture and Implementation Guidelines
+# Architecture Guidelines
+((Mainly focus on DevSecOps: Mandatory architectural and implementation conventions)
 
-This document outlines the mandatory coding standards, package structures, and software design principles for the GDA Monorepo. Both GitHub Copilot and development teams must adhere strictly to these guidelines.
+This document defines the mandatory architectural, implementation and coding conventions for this project.
+
+The examples provided are project-specific.
+
+AI assistants and development teams must follow these guidelines whenever they are applicable within this project.
 
 ---
 
 ## 1. Backend Micro-Architecture: Service Classification by Impact Levels (Tiers)
 
-To ensure a proportional, cost-effective, and efficient design, microservices are classified into distinct tiers based on their business impact and operational complexity:
+When microservice architectures are used, services should be classified into implementation tiers according to their business impact and operational complexity.
 
 ### Tier 1: Core Business Modules
 - **Description:** Critical microservices that process core business logic and manage sensitive, complex, or domain-heavy data.
@@ -26,15 +31,20 @@ To ensure a proportional, cost-effective, and efficient design, microservices ar
 - **Target Examples:** `gda-log`.
 
 ### General Considerations
-- All new microservices must be formally evaluated and assigned to their respective Tier during the initial design and technical scoping phase.
-- Any change in a service's classification must be vetted by the architecture review board and documented in the corresponding Architecture Decision Record (ADR).
+- All new services should be evaluated and assigned to their appropriate architectural tier during the initial design phase.
+
+- Changes affecting architectural classification should be reviewed according to the project's governance and documented through the applicable Architectural Decision process (e.g. ADRs when used).
 
 ---
 
 ## 2. Frontend Micro-Architecture: Vue.js & Quasar Framework
 
 ### Project Structure
-The Frontend application is powered by Vue.js and the Quasar Framework, utilizing a highly scalable **Feature-Driven Layout (Domain-Driven Structure)**. The codebase must be organized as follows:
+This example uses Vue.js and the Quasar Framework with a highly scalable **Feature-Driven Layout (Domain-Driven Structure)**.
+
+Equivalent project-specific structures may be used when justified.
+
+The codebase must be organized as follows:
 
 - **`src/modules/`:**
   The core directory where each folder represents an isolated system feature or business capability. Every feature module must strictly contain:
@@ -52,10 +62,11 @@ The Frontend application is powered by Vue.js and the Quasar Framework, utilizin
   The centralized directory for data schemas and structural representations (e.g., `person.js`, `group.js`). These objects act as the frontend mirrors for the backend DTO contracts, enforcing structural data validation.
 
 ### API Consumption Rules
-- Direct HTTP network calls using raw fetch or local Axios instances inside views are strictly prohibited. All requests must be handled via `src/utils/axiosCall.js`.
-- Security tokens (JWT) must never be managed manually per request; they must be appended via the central request interceptors in `src/boot/axios.js`.
+- Direct HTTP calls from presentation components should be avoided. For example, network calls using raw fetch or local Axios instances inside views are strictly prohibited. All requests must be handled via `src/utils/axiosCall.js`.
+
+- Project-approved abstraction layers should be used whenever available. For example, security tokens (JWT) must never be managed manually per request; they must be appended via the central request interceptors in `src/boot/axios.js`.
 
 ### Development Best Practices
 - **Logic Isolation:** Keep layout files clean; all feature-specific logic, computational expressions, and asynchronous data orchestration must reside inside local composables (`src/modules/[module]/composables/`).
-- **Data Integrity:** Always instantiate or parse network payloads using the schemas defined in `src/models/` to safeguard component rendering against unexpected structural schema breaking changes from backend APIs.
+- **Data Integrity:** Always validate or map exchanged data using the project's approved data models or contracts. For example, always instantiate or parse network payloads using the schemas defined in `src/models/` to safeguard component rendering against unexpected structural schema changes from backend APIs.
 - **Zero Boilerplate in Views:** Avoid embedding inline state mutations or redundant HTTP handlers within `.vue` templates or script blocks.

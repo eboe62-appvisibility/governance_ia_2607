@@ -1,19 +1,19 @@
 # ADR Index
+((Mainly focus on DevSecOps: Index of Architectural Decision Records)
 
 ## Purpose
-
-This document is the authoritative index of all ADRs in this repository.
+This document is the authoritative index of all Architectural Decision Records (ADRs) within this project.
 
 The objective is to:
 
-* identify active ADRs
-* identify superseded ADRs
-* identify deprecated ADRs
-* identify ADR relationships
-* improve governance consistency
-* improve AI reasoning reliability
+- identify active ADRs
+- identify superseded ADRs
+- identify deprecated ADRs
+- identify ADR relationships
+- improve governance consistency
+- improve AI reasoning reliability
 
-All ADR reviews should consult this index before evaluating architectural decisions.
+Architectural decision reviews should consult this index before evaluating architectural decisions.
 
 ---
 
@@ -25,12 +25,12 @@ Not all ADRs have equal status.
 
 An ADR may be:
 
-* Proposed
-* Accepted
-* Superseded
-* Deprecated
+- PROPOSED
+- APPROVED
+- SUPERSEDED
+- DEPRECATED
 
-Only active accepted ADRs are considered authoritative.
+Only APPROVED ADRs are considered authoritative.
 
 ---
 
@@ -62,9 +62,9 @@ Meaning: No longer recommended. Historical reference only. Not authoritative.
 
 ---
 
-## ADR Registry — Complete Index
+## ADR Registry
 
-### server_monitoring_2509 (Platform: Docker Compose, Python, IaC)
+### Project: server_monitoring_2509 (Platform: Docker Compose, Python, IaC)
 
 | ADR | Status | Category | Scope | Date | Title |
 |-----|--------|----------|-------|------|-------|
@@ -166,7 +166,7 @@ If two ADRs appear to conflict:
 2. Verify supersession chain
 3. Only APPROVED ADRs are authoritative
 4. PROPOSED ADRs cannot override APPROVED ADRs
-5. Activate Governance Arbiter if required
+5. Escalate according to the project's governance process (e.g. Governance Arbiter)
 
 Do not assume newer ADRs automatically override older ADRs.
 
@@ -184,12 +184,12 @@ Only ADRs with Status: APPROVED are authoritative.
 
 ## AI Governance Rule
 
-AI assistants must consult ADR_INDEX.md before:
+AI assistants must consult this ADR_INDEX.md before:
 
-* ADR reviews
-* architecture reviews
-* hardening reviews
-* implementation recommendations
+- reviewing architectural decisions
+- reviewing architecture
+- producing implementation recommendations
+- evaluating architectural authority
 
 Failure to verify ADR status may produce invalid conclusions.
 

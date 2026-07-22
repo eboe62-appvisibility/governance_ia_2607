@@ -1,27 +1,24 @@
 # Evidence Classification Model
+((Mainly focus on DevSecOps: How evidence is classified and evaluated)
 
 ## Purpose
 
-This document defines the evidence classification framework used by AI assistants operating within this repository.
+This document defines the evidence classification framework used by AI assistants operating within this project.
 
 The objective is to:
 
-* distinguish assumptions from validated facts
-* improve decision quality
-* reduce hallucinations
-* improve architectural consistency
-* improve operational safety
-* improve traceability
+- distinguish assumptions from validated facts
+- improve decision quality
+- reduce hallucinations
+- improve architectural consistency
+- improve operational safety
+- improve traceability
 
 All findings, recommendations, conclusions, implementation proposals, and ADR discussions should be evaluated using this evidence model.
 
 Evidence does not create authority.
 
-Authority must be determined using:
-
-docs/governance/AUTHORITY_HIERARCHY.md
-
-before evidence assessment begins.
+Authority must be determined according to the project's Authority Hierarchy (e.g. docs/governance/AUTHORITY_HIERARCHY.md) before evidence assessment begins.
 
 ---
 
@@ -29,11 +26,11 @@ before evidence assessment begins.
 
 This document does not override:
 
-* Explicit User Instructions
-* Approved ADRs
-* AI Constitution
-* DevSecOps Principles
-* Task Classification Model
+- Explicit User Instructions
+- Approved Architectural Decisions (when applicable)
+- AI Constitution
+- Project Principles (e.g. DevSecOps)
+- Task Classification Model
 
 This model defines how confidence and evidence should be assessed.
 
@@ -43,7 +40,7 @@ This model defines how confidence and evidence should be assessed.
 
 Not all evidence has the same value.
 
-Operational decisions must prioritize stronger evidence levels whenever possible.
+Project decisions should prioritize stronger evidence levels whenever possible.
 
 Higher evidence levels supersede lower evidence levels.
 
@@ -69,25 +66,25 @@ Assumptions, expectations, guesses, predictions, or inferred behaviour.
 
 ### Examples
 
-* Expected container behaviour
-* Assumed Docker image behaviour
-* Suspected root cause
-* Predicted hardening impact
+- Expected container behaviour
+- Assumed Docker image behaviour
+- Suspected root cause
+- Predicted hardening impact
 
 ### Allowed Uses
 
-* Exploration
-* Brainstorming
-* Investigation planning
+- Exploration
+- Brainstorming
+- Investigation planning
 
 ### Forbidden Uses
 
 E0 alone must never justify:
 
-* Production changes
-* ADR approval
-* Security enforcement
-* Hardening implementation
+- Production changes
+- ADR approval
+- Security enforcement
+- Hardening implementation
 
 ### Example
 
@@ -105,17 +102,17 @@ E0
 
 Evidence derived from:
 
-* source code
-* Dockerfiles
-* shell scripts
-* Python scripts
-* repository contents
+- source code
+- project files (e.g. Dockerfiles)
+- scripts
+- project assets (e.g. Python scripts)
+- repository contents
 
 ### Examples
 
-* Dockerfile contains USER 1000
-* Script creates directory
-* Python application writes log files
+- Dockerfile contains USER 1000
+- Script creates directory
+- Python application writes log files
 
 ### Strength
 
@@ -145,18 +142,18 @@ E1
 
 Evidence derived from:
 
-* compose files
-* configuration files
-* environment variables
-* CI definitions
-* infrastructure definitions
+- configuration files
+- project configuration (e.g. compose files)
+- environment variables (when applicable)
+- automation definitions (when applicable, e.g. CI definitions)
+- infrastructure definitions (when applicable)
 
 ### Examples
 
-* read_only configured
-* tmpfs configured
-* capability drops configured
-* healthcheck configured
+- read_only configured
+- tmpfs configured
+- capability drops configured
+- healthcheck configured
 
 ### Strength
 
@@ -180,16 +177,16 @@ E2
 
 ### Definition
 
-Evidence collected from a running system.
+Evidence collected from an observed system or project state.
 
 ### Examples
 
-* docker inspect
-* docker exec
-* runtime filesystem inspection
-* open file handles
-* process inspection
-* mounted volumes
+* runtime inspection (when applicable e.g. docker inspect)
+* observed execution behaviour (e.g. docker exec)
+* generated outputs
+* process inspection (when applicable)
+* filesystem inspection (when applicable e.g. runtime filesystem inspection)
+* operational observations (e.g. mounted volumes)
 
 ### Strength
 
@@ -213,15 +210,16 @@ E3
 
 ### Definition
 
-Evidence obtained through automated controls.
+Evidence obtained through automated validation or repeatable verification processes.
 
 ### Examples
 
-* CI pipelines
-* security tests
-* runtime tests
-* integration tests
-* reproducibility tests
+- automated tests
+- validation pipelines (when applicable e.g. CI pipelines)
+- automated verification processes (e.g. security or runtime tests)
+- integration tests
+- reproducibility tests
+
 
 ### Strength
 
@@ -243,14 +241,14 @@ E4
 
 ### Definition
 
-Evidence validated through successful operational use.
+Evidence validated through sustained real-world use or operational experience.
 
 ### Examples
 
-* Production deployments
-* Operational observations
-* Monitoring confirmation
-* Incident-free operation
+- Production deployments
+- Operational observations
+- Monitoring confirmation
+- Incident-free operation
 
 ### Strength
 
@@ -277,25 +275,15 @@ E5
 Highest confidence:
 
 E5 Production Validation
-
 ↓
-
 E4 Automated Validation
-
 ↓
-
 E3 Runtime Validation
-
 ↓
-
 E2 Configuration
-
 ↓
-
 E1 Source Code
-
 ↓
-
 E0 Hypothesis
 
 Lowest confidence
@@ -306,11 +294,11 @@ Lowest confidence
 
 AI assistants should explicitly identify evidence levels whenever making:
 
-* recommendations
-* architectural conclusions
-* hardening proposals
-* security assessments
-* ADR evaluations
+- recommendations
+- architectural conclusions
+- hardening proposals
+- security assessments
+- ADR evaluations
 
 Preferred format:
 
@@ -357,15 +345,17 @@ Validated but not yet production-certified.
 
 ## Production Certification Rule
 
-The following topics should not be considered fully validated until E5 exists:
+The following types of changes should not be considered fully validated until E5 exists (when applicable):
 
-* hardening controls
-* readonly filesystem
-* capability reductions
-* network restrictions
-* runtime security controls
-* observability changes
-* backup changes
+- architectural changes (e.g network restrictions)
+- security controls (e.g. hardening controls)
+- operational procedures (e.g readonly filesystem)
+- automation (e.g. runtime security controls)
+- infrastructure (e.g. backup changes)
+- governance changes
+- security controls (e.g. capability reductions)
+- knowledge models
+- observability changes
 
 Until E5 exists:
 
@@ -381,7 +371,7 @@ FULLY CERTIFIED
 
 ## ADR Requirements
 
-ADR discussions should explicitly identify:
+Architectural decision discussions (e.g. ADRs) should explicitly identify:
 
 Evidence Used
 
@@ -470,4 +460,4 @@ Highest Evidence:
 
 E5
 
-Only CERTIFIED states should be treated as fully proven operational behaviour.
+Only CERTIFIED states should be treated as fully validated for their intended operational or project context.

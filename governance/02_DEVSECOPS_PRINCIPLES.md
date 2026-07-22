@@ -1,56 +1,56 @@
 # DevSecOps Principles
+((Mainly focus on DevSecOps: Core engineering principles governing the project's implementation)
 
 ## Architecture Principles
 
-* Infrastructure as Code first
-* Docker Compose standalone
-* Single-node architecture
-* Progressive evolution
-* Operational simplicity
+- Infrastructure as Code first (when applicable)
+- Prefer simple and maintainable architectures (e.g. Single-node architecture when applicable)
+- Progressive evolution
+- Operational simplicity
 
 ---
 
 ## Security Principles
 
-* Least privilege
-* Defense in depth
-* Progressive hardening
-* Runtime validation
-* Explicit trust boundaries
+- Least privilege
+- Defense in depth
+- Progressive hardening
+- Validation before enforcement (e.g. before runtime)
+- Explicit trust boundaries
 
 ---
 
 ## Container Principles
 
-Default expectations:
+When container technologies are used, default expectations include:
 
-* cap_drop: ALL
-* no-new-privileges
-* non-root when viable
-* healthchecks enabled
+- cap_drop: ALL
+- no-new-privileges
+- non-root when viable
+- healthchecks enabled
 
-read_only requires evidence.
+Security hardening measures (e.g. read_only) require evidence and validation.
 
 ---
 
 ## Operations Principles
 
-* Stability over optimization
-* Monitoring before enforcement
-* Alerting before automation
-* Evidence before action
+- Stability over optimization
+- Monitoring before enforcement (when applicable)
+- Alerting before automation (when applicable)
+- Evidence before action
 
 ---
 
 ## Observability Principles
 
-All critical services should provide:
+When operational services exist, they should provide appropriate observability, such as:
 
-* logs
-* metrics
-* healthchecks
+- logs
+- metrics
+- healthchecks
 
-Observability is a prerequisite for enforcement.
+Observability should precede operational enforcement.
 
 ---
 
@@ -58,9 +58,11 @@ Observability is a prerequisite for enforcement.
 
 Changes must respect:
 
-* approved ADRs
-* project scope
-* operational constraints
+- Explicit User Instructions
+- Approved Architectural Decisions (when applicable)
+- Project Governance
+- Project scope
+- Operational constraints (when applicable)
 
 ---
 
@@ -68,10 +70,10 @@ Changes must respect:
 
 Every significant change should define:
 
-* objective
-* risk
-* validation
-* rollback
+- objective
+- risks
+- validation
+- rollback strategy (when applicable)
 
 ---
 
@@ -79,4 +81,6 @@ Every significant change should define:
 
 Documentation is part of the deliverable.
 
-Undocumented behaviour should be considered temporary.
+Significant decisions and behaviours should remain traceable.
+
+Undocumented behaviour should be considered temporary until appropriately documented or intentionally removed.
