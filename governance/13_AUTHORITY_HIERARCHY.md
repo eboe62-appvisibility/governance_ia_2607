@@ -1,5 +1,5 @@
 # Authority Hierarchy
-(Which document takes precedence when there is a conflict? - describes which sources hold decision-making authority)
+(General Purpose Use: Which document takes precedence when there is a conflict? - describes which sources hold decision-making authority)
 
 ## Purpose
 
@@ -63,7 +63,7 @@ Approved Architectural Decisions (e.g. ADRs)
 
 Authority must be determined using the project's architectural decision registry (e.g. docs/architecture/ADR_INDEX.md).
 
-Only architectural decisions classified as ACCEPTED are authoritative.
+Only architectural decisions classified as APPROVED are authoritative.
 
 PROPOSED, SUPERSEDED and DEPRECATED decisions are historical records.
 

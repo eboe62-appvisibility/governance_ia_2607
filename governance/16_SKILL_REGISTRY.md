@@ -1,5 +1,5 @@
 # Skill Registry
-(Catalog of available specialists - describes which AI capabilities are available)
+(General Purpose Use: Catalog of available specialists - describes which AI capabilities are available)
 
 ## Purpose
 

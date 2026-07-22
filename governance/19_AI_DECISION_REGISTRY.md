@@ -1,5 +1,5 @@
 # AI Decision Registry
-(Only major architectural decisions - describes which decisions should be preserved for future reference)
+(General Purpose Use: Only major architectural decisions - describes which decisions should be preserved for future reference)
 
 ## Purpose
 

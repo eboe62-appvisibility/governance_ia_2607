@@ -1,5 +1,5 @@
 # Analysis Protocol
-(How AI Thinks - describes how AI analyses and reasons before reaching conclusions)
+(General Purpose Use: How AI Thinks - describes how AI analyses and reasons before reaching conclusions)
 
 ## Objective
 

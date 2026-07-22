@@ -1,5 +1,5 @@
 # Task Classification Model
-(What type of task is being solved? - describes how tasks are classified before analysis or execution)
+(General Purpose Use: What type of task is being solved? - describes how tasks are classified before analysis or execution)
 
 ## Purpose
 

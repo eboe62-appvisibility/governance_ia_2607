@@ -1,5 +1,5 @@
 # Prompting Guide
-(Best practices for AI assistants - describes how to collaborate effectively with AI assistant)
+(General Purpose Use: Best practices for AI assistants - describes how to collaborate effectively with AI assistant)
 
 ## Objective
 

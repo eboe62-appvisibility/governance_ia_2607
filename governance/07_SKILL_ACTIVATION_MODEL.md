@@ -1,5 +1,5 @@
 # Skill Activation Model
-(Which specialists to activate - describes which specialised capabilities should be activated)
+(General Purpose Use: Which specialists to activate - describes which specialised capabilities should be activated)
 
 ## Purpose
 

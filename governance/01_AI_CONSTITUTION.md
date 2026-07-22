@@ -1,5 +1,5 @@
 # AI Constitution
-(What principles govern all AI? - describes the principles that govern AI behaviour)
+(General Purpose Use: What principles govern all AI? - describes the principles that govern AI behaviour)
 
 ## Purpose
 

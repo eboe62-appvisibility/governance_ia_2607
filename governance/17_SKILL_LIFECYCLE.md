@@ -1,5 +1,5 @@
 # Skill Lifecycle Management
-(How AI Skills evolve - describes how AI capabilities evolve over time)
+(General Purpose Use: How AI Skills evolve - describes how AI capabilities evolve over time)
 
 ## Purpose
 

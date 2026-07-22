@@ -1,5 +1,5 @@
 # User Preferences
-(How the user wants to work -  describe how the user prefers to collaborate with AI)
+(General Purpose Use: How the user wants to work -  describe how the user prefers to collaborate with AI)
 
 ## Purpose
 
