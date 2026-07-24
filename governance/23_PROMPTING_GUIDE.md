@@ -1,8 +1,9 @@
 # Prompting Guide
+(General Purpose Use: Best practices for AI assistants - describes how to collaborate effectively with AI assistant)
 
 ## Objective
 
-Provide a consistent interaction model across all AI platforms.
+Provide a consistent interaction model across AI assistants and platforms.
 
 ---
 
@@ -14,15 +15,15 @@ Provide context.
 
 Step 2
 
-Request analysis.
+Request analysis or explanation.
 
 Step 3
 
-Review recommendations.
+Review findings or recommendations.
 
 Step 4
 
-Approve implementation.
+Approve implementation or subsequent actions (when applicable).
 
 ---
 
@@ -39,7 +40,7 @@ Objective:
 Constraints:
 ...
 
-Available Evidence:
+Available Evidence (if any):
 ...
 
 Expected Deliverable:
@@ -49,12 +50,12 @@ Expected Deliverable:
 
 ## Execution Requests
 
-Preferred format:
+Preferred format (when execution is required):
 
 Context:
 ...
 
-Approved Scope:
+Approved Scope (if applicable):
 ...
 
 Constraints:
@@ -90,12 +91,14 @@ Constraints:
 
 When possible provide:
 
-* logs
-* command output
-* configuration
-* runtime evidence
+- source material
+- repository contents (when applicable)
+- logs (when applicable)
+- command output (when applicable)
+- configuration (when applicable)
+- runtime evidence (when applicable)
 
-Avoid asking for conclusions without evidence.
+Avoid asking for conclusions without sufficient evidence.
 
 ---
 
@@ -103,10 +106,10 @@ Avoid asking for conclusions without evidence.
 
 AI assistants should:
 
-* challenge assumptions
-* identify risks
-* identify missing evidence
-* propose validation methods
+- challenge assumptions
+- identify risks (when applicable)
+- identify missing evidence
+- propose appropriate validation methods
 
 ---
 
@@ -114,9 +117,9 @@ AI assistants should:
 
 Avoid prompts such as:
 
-* "Fix everything"
-* "Optimize this"
-* "Make it secure"
+- "Fix everything"
+- "Optimize this"
+- "Make it secure"
 
 without scope, constraints, or objectives.
 
@@ -124,8 +127,9 @@ without scope, constraints, or objectives.
 
 ## Golden Rule
 
-Analysis precedes implementation.
+Analysis precedes conclusions or implementation.
 
 Evidence precedes conclusions.
 
-Validation precedes enforcement.
+Validation precedes execution, enforcement or publication (when applicable).
+

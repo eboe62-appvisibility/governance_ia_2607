@@ -1,8 +1,9 @@
 # Analysis Protocol
+(General Purpose Use: How AI Thinks - describes how AI analyses and reasons before reaching conclusions)
 
 ## Objective
 
-Provide a structured methodology for technical analysis before implementation.
+Provide a structured methodology for analysing a problem before proposing recommendations, implementations or conclusions.
 
 ---
 
@@ -10,11 +11,14 @@ Provide a structured methodology for technical analysis before implementation.
 
 Identify:
 
-* objective
-* affected systems
-* constraints
-* dependencies
-* existing ADRs
+- objective
+- affected project areas
+- available knowledge sources (e.g. Knowledge Graph, such as
+  ./.ua/knowledge-graph.json when available, and repository contents).
+  The configured Knowledge Graph is the mandatory first source of reference.
+- constraints
+- dependencies
+- applicable authoritative documentation or ADRs
 
 If information is missing:
 
@@ -28,17 +32,21 @@ Do not guess.
 
 Determine:
 
-* current implementation
-* runtime behaviour
-* configuration state
-* operational dependencies
+- current state
+- existing implementation (when applicable)
+- configuration state
+- observed behaviour
+- relevant dependencies
 
 Prefer:
 
-* runtime inspection
-* logs
-* metrics
-* source code
+- direct observations
+- verified sources
+- repository contents
+- runtime inspection (when applicable)
+- source code
+- logs
+- metrics
 
 over assumptions.
 
@@ -48,30 +56,39 @@ over assumptions.
 
 Identify:
 
-* operational risks
-* security risks
-* performance risks
-* maintenance risks
+- operational risks
+- architectural risks
+- security risks (when applicable)
+- knowledge consistency risks
+- performance risks
+- maintenance risks
 
 Classify:
 
-* Low
-* Medium
-* High
-* Critical
+- Low
+- Medium
+- High
+- Critical
 
 ---
 
 ## Phase 4 - Impact Assessment
 
-Evaluate impact on:
+Evaluate the potential impact on:
 
-* services
-* deployments
-* observability
-* backups
-* CI/CD
-* security controls
+- project objectives
+- architecture
+- knowledge model
+- documentation
+- implementations (when applicable)
+- security
+- future maintainability
+- services (when applicable)
+- deployments (when applicable)
+- observability (when applicable)
+- backups (when applicable)
+- CI/CD (when applicable)
+- security controls (when applicable)
 
 ---
 
@@ -79,11 +96,11 @@ Evaluate impact on:
 
 Provide:
 
-* recommended option
-* alternative options
-* rejected options
+- recommended option
+- alternative options
+- rejected options
 
-Explain rationale.
+Explain the rationale for each.
 
 ---
 
@@ -91,10 +108,11 @@ Explain rationale.
 
 Define:
 
-* required evidence
-* tests
-* rollback strategy
-* acceptance criteria
+- required evidence
+- validation methods
+- tests
+- rollback strategy (when applicable)
+- acceptance criteria
 
 ---
 
@@ -110,18 +128,25 @@ Every analysis should contain:
 6. Recommendation
 7. Validation Plan
 
-Implementation is not part of analysis.
+Analysis and implementation are separate activities.
+
+---
+
+## Authority Validation
+
+Before evaluating evidence:
+
+Determine the applicable authority hierarchy.
+
+Authority assessment precedes evidence assessment.
 
 ---
 
 ## ADR Referencing Rule
 
-AI assistants must not claim that a specific ADR is impacted,
-superseded, contradicted, or requires modification unless that ADR
-has been explicitly reviewed during the current analysis.
+AI assistants must not claim that a specific ADR is impacted, superseded, contradicted, or requires modification unless that ADR has been explicitly reviewed during the current analysis.
 
-When repository evidence is incomplete, ADR references must be
-reported as potential candidates rather than confirmed impacts.
+When repository evidence is incomplete, ADR references must be reported as potential candidates rather than confirmed impacts.
 
 ---
 
@@ -129,18 +154,18 @@ reported as potential candidates rather than confirmed impacts.
 
 Before entering impact analysis,
 AI assistants must verify that sufficient
-repository evidence has been reviewed.
+evidence has been reviewed.
 
 Impact analysis must not be performed solely from:
 
 - names
 - labels
-- filenames
-- directory structure
+- file names
+- directory structures
 - technology references
 - user assumptions
 
-If repository evidence is insufficient:
+If evidence is insufficient:
 
 STOP
 
@@ -155,9 +180,11 @@ Request additional evidence.
 Impact classification is prohibited until the
 Evidence Sufficiency Gate is satisfied.
 
-### User-Supplied Scope Evidence
+---
 
-Explicit information provided by the user about the intended scope of a change constitutes admissible evidence for governance classification.
+## User-Supplied Scope Evidence
+
+Explicit information provided by the user regarding the intended scope of a change constitutes admissible evidence for governance classification.
 
 Examples:
 
@@ -165,44 +192,56 @@ Examples:
 - "Rename variable"
 - "Update comment"
 - "Change button color"
+- "Correct translation"
+- "Summarise chapter three"
 
-The AI may use the declared change scope to determine proportional governance requirements.
+The AI may use the declared scope to determine proportional governance requirements.
 
-The AI must not assume hidden impacts beyond the declared scope unless repository evidence directly contradicts the user statement.
+Hidden impacts must not be assumed unless available evidence directly contradicts the declared scope.
 
 Repository inspection becomes mandatory only when:
 
-- the requested change itself is ambiguous
-- repository evidence contradicts the declared scope
-- the requested action could reasonably alter runtime behavior, security boundaries, persistence, networking, authorization, authentication, infrastructure, or architectural constraints
+- the requested change is ambiguous
+- available evidence contradicts the declared scope
+- the requested action could reasonably affect architecture,
+  knowledge integrity,
+  runtime behaviour,
+  security,
+  governance,
+  persistence,
+  networking,
+  authorization,
+  authentication,
+  infrastructure,
+  or architectural constraints
 
-The Evidence Sufficiency Gate prohibits unsupported technical inferences, not the use of explicit user-provided scope information.
-<<<<<<< HEAD
-=======
+The Evidence Sufficiency Gate prohibits unsupported technical or conceptual inferences, not the use of explicit user-provided information.
+
+---
 
 ## Evidence Assessment
 
 All findings must identify:
 
-* evidence sources
-* highest evidence level
-* missing evidence
+- evidence sources
+- highest evidence level
+- missing evidence
 
-Use the Evidence Classification Model.
+Use the project's Evidence Classification Model.
 
 Conclusions without identified evidence levels are considered incomplete.
+
+---
 
 ## Confidence Assessment
 
 All findings and recommendations must include:
 
-* confidence level
-* confidence justification
-* known limitations
+- confidence level
+- confidence justification
+- known limitations
 
-Use the Confidence Assessment Model.
-
-Confidence must be treated independently from evidence level.
+Confidence must be evaluated independently from evidence level.
 
 High evidence does not automatically imply high confidence.
 
@@ -210,27 +249,27 @@ Missing evidence must reduce confidence.
 
 Confidence levels:
 
-* INSUFFICIENT
-* LOW
-* MEDIUM
-* HIGH
-* VERY HIGH
+- INSUFFICIENT
+- LOW
+- MEDIUM
+- HIGH
+- VERY HIGH
+
+---
 
 ## Governance Conflict Detection
 
 If multiple authoritative sources provide incompatible guidance:
 
-Activate:
-
-governance_arbiter
+Activate the AI Skill responsible for governance conflict resolution. (e.g. governance_arbiter or  authority_resolver)
 
 Do not silently choose one source.
 
 Determine:
 
-* authority hierarchy
-* evidence levels
-* confidence levels
+- authority hierarchy
+- evidence levels
+- confidence levels
 
 Document the rationale.
 
@@ -240,36 +279,34 @@ STOP.
 
 Request clarification.
 
-## Authority Validation
-
-Before evaluating evidence:
-
-Determine authority using:
-
-docs/governance/AUTHORITY_HIERARCHY.md
-
-Authority assessment precedes evidence assessment.
+---
 
 ## ADR Validation
 
 When ADRs are referenced:
 
-Verify ADR status using:
+Verify the status of the referenced ADR using the project's authoritative architectural documentation e.g.
+  docs/architecture/ADR_INDEX.md (when applicable)
 
-docs/architecture/ADR_INDEX.md
+or
+
+Determine authority using:
+  docs/governance/AUTHORITY_HIERARCHY.md
 
 Do not assume referenced ADRs remain active.
 
+---
+
 ## Skill Validation
 
-Before activating specialized skills:
+Before activating specialised skills:
 
-Verify:
+Verify that:
 
-* skill exists
-* skill status is ACTIVE
+- the required AI Skill exists
+- the Skill is applicable to the current task
+- the Skill is compatible with the current governance constraints
 
 using:
-
-docs/governance/SKILL_REGISTRY.md
->>>>>>> origin/develop
+using the project's Skill Registry e.g.
+  docs/governance/SKILL_REGISTRY.md

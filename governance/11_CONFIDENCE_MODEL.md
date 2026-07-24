@@ -1,17 +1,18 @@
 # Confidence Assessment Model
+((Mainly focus on DevSecOps: How confidence is assessed)
 
 ## Purpose
 
-This document defines the confidence assessment framework used by AI assistants operating within this repository.
+This document defines the confidence assessment framework used by AI assistants operating within this project.
 
 The objective is to:
 
-* distinguish evidence from certainty
-* improve decision quality
-* reduce overconfidence
-* improve transparency
-* improve architectural consistency
-* improve operational safety
+- distinguish evidence from certainty
+- improve decision quality
+- reduce overconfidence
+- improve transparency
+- improve architectural consistency
+- improve operational safety
 
 All findings, recommendations, conclusions, implementation proposals, ADR discussions, and audits should include confidence assessment.
 
@@ -28,12 +29,12 @@ Confidence assessment occurs only after:
 
 This document does not override:
 
-* Explicit User Instructions
-* Approved ADRs
-* AI Constitution
-* DevSecOps Principles
-* Task Classification Model
-* Evidence Classification Model
+- Explicit User Instructions
+- Approved Architectural Decisions (when applicable)
+- AI Constitution
+- Project Principles (when applicable, e.g. DevSecOps)
+- Task Classification Model
+- Evidence Classification Model
 
 Confidence assessment is complementary to evidence assessment.
 
@@ -57,12 +58,12 @@ Low evidence does not automatically imply low confidence.
 
 Confidence must consider:
 
-* evidence quality
-* evidence completeness
-* consistency
-* reproducibility
-* operational history
-* known limitations
+- evidence quality
+- evidence completeness
+- consistency
+- reproducibility
+- observed history (when applicable, e.g. operational history)
+- known limitations
 
 ---
 
@@ -80,25 +81,25 @@ Insufficient information exists to support a reliable conclusion.
 
 ### Typical Conditions
 
-* missing evidence
-* conflicting observations
-* unknown runtime behaviour
-* incomplete scope
+- missing evidence
+- conflicting observations
+- unknown observed behaviour (e.g. runtime behaviour)
+- incomplete scope
 
 ### Allowed Actions
 
-* request additional information
-* propose validation steps
+- request additional information
+- propose validation steps
 
 ### Forbidden Actions
 
-* implementation recommendation
-* architectural approval
-* production changes
+- implementation recommendation
+- architectural approval
+- production or project changes (when applicable)
 
 ### Example
 
-ReadOnlyRootfs compatibility has not been tested.
+A proposed change has not been validated (e.g. ReadOnlyRootfs compatibility has not been tested).
 
 Confidence:
 
@@ -114,25 +115,25 @@ A preliminary conclusion exists but significant uncertainty remains.
 
 ### Typical Conditions
 
-* E0-E1 evidence only
-* assumptions dominate
-* runtime behaviour unknown
+- E0-E1 evidence only
+- assumptions dominate
+- observed behaviour unknown (e.g. runtime behaviour)
 
 ### Allowed Actions
 
-* exploratory analysis
-* investigation planning
+- exploratory analysis
+- investigation planning
 
 ### Forbidden Actions
 
-* production certification
-* strong recommendations
+- production certification
+- strong recommendations
 
 ### Example
 
-Dockerfile suggests compatibility.
+Available project evidence suggests compatibility (e.g. Dockerfile analysis).
 
-No runtime validation exists.
+No observed validation exists (e.g. runtime validation).
 
 Confidence:
 
@@ -148,14 +149,14 @@ Evidence supports the conclusion but important gaps remain.
 
 ### Typical Conditions
 
-* E2-E3 evidence available
-* partial validation completed
-* limited operational exposure
+- E2-E3 evidence available
+- partial validation completed
+- limited operational exposure
 
 ### Allowed Actions
 
-* pilot recommendations
-* controlled testing
+- pilot recommendations
+- controlled testing
 
 ### Restrictions
 
@@ -163,11 +164,11 @@ Must explicitly identify validation gaps.
 
 ### Example
 
-Runtime inspection completed.
+Observed validation completed (e.g. runtime inspection).
 
-No CI validation.
+No automated validation (e.g. CI validation).
 
-No production validation.
+No long-term validation (e.g. production validation).
 
 Confidence:
 
@@ -183,21 +184,21 @@ Strong evidence supports the conclusion.
 
 ### Typical Conditions
 
-* E3-E4 evidence
-* repeatable validation
-* consistent observations
+- E3-E4 evidence
+- repeatable validation
+- consistent observations
 
 ### Allowed Actions
 
-* implementation recommendation
-* ADR support
-* controlled deployment
+- implementation recommendation
+- ADR support
+- controlled deployment
 
 ### Example
 
-Runtime validation completed.
+Observed validation completed (e.g. runtime validation).
 
-CI validation completed.
+Automated validation completed (e.g. CI validation).
 
 Results reproducible.
 
@@ -211,26 +212,26 @@ HIGH
 
 ### Definition
 
-Operational history confirms the conclusion.
+Sustained real-world experience confirms the conclusion.
 
 ### Typical Conditions
 
-* E5 evidence
-* production validation
-* stable operation over time
-* no contradictory observations
+- E5 evidence
+- long-term validation (e.g. production validation)
+- sustained successful operation or use over time
+- no contradictory observations
 
 ### Allowed Actions
 
-* certification
-* governance baseline adoption
-* architectural standardization
+- certification
+- governance baseline adoption
+- architectural standardization
 
 ### Example
 
-Feature operational in production for extended period.
+Feature or capability successfully used over an extended period (e.g. production operation).
 
-No incidents.
+No contradictory evidence observed.
 
 Confidence:
 
@@ -246,7 +247,7 @@ Confidence must be determined using:
 2. Evidence completeness
 3. Reproducibility
 4. Consistency
-5. Operational history
+5. Observed history (when applicable)
 6. Known limitations
 
 Confidence must never be assigned solely based on intuition.
@@ -285,12 +286,12 @@ Context always matters.
 
 The following activities require confidence reporting:
 
-* analysis
-* audits
-* ADR evaluations
-* hardening proposals
-* execution recommendations
-* incident reviews
+- analysis
+- audits
+- architectural decision evaluations (e.g. ADRs)
+- hardening proposals
+- execution recommendations
+- incident reviews
 
 Recommended format:
 
@@ -299,9 +300,9 @@ MEDIUM
 
 Reasoning:
 
-* Runtime validated
-* No CI validation
-* No production validation
+- Observed validation completed (e.g. runtime validation)
+- No automated validation (e.g. CI validation)
+- No long-term validation (e.g. production validation)
 
 ---
 
@@ -350,15 +351,14 @@ not HIGH
 
 ## Hardening Governance Rule
 
-The following topics require explicit confidence assessment:
+The following types of decisions require explicit confidence assessment (when applicable):
 
-* read_only filesystem
-* capability reduction
-* network isolation
-* runtime restrictions
-* observability changes
-* backup changes
-* authentication changes
+- security controls (e.g. read_only filesystem, capability reduction)
+- infrastructure changes (e.g. network isolation)
+- operational procedures (e.g. backup changes)
+- runtime restrictions (when applicable)
+- observability changes (when applicable)
+- authentication changes (when applicable)
 
 Confidence must be reported before recommendations.
 
@@ -366,7 +366,7 @@ Confidence must be reported before recommendations.
 
 ## ADR Governance Rule
 
-ADR proposals should contain:
+Architectural decision proposals (e.g. ADRs) should contain:
 
 Evidence:
 <Evidence Levels>
@@ -414,8 +414,8 @@ HIGH
 
 Limitations:
 
-* No long-term production history
-* Single environment tested
+- No long-term usage history (e.g. production history)
+- Validation limited to a single environment (when applicable)
 
 ---
 
@@ -435,10 +435,10 @@ Execution recommendation
 ADR approval
 → HIGH
 
-Operational certification
+Project certification (when applicable, e.g. operational certification)
 → VERY HIGH
 
-Production standardization
+Project standardization (e.g. production standardization)
 → VERY HIGH
 
 Lower confidence levels require explicit justification.
@@ -457,14 +457,14 @@ LOW
 
 AI assistants should prefer:
 
-* further validation
-* evidence gathering
-* testing
+- further validation
+- evidence gathering
+- testing
 
 over
 
-* implementation
-* enforcement
-* certification
+- implementation
+- enforcement
+- certification
 
 Validation before action remains the preferred strategy.

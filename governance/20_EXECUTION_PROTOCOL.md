@@ -1,4 +1,5 @@
 # Execution Protocol
+(Mainly focus on DevSecOps: How approved changes should be executed)
 
 ## Objective
 
@@ -10,10 +11,10 @@ Define how approved changes should be executed.
 
 Before implementation:
 
-* analysis completed
-* risks identified
-* constraints understood
-* approval received
+- analysis completed
+- risks identified
+- constraints understood
+- approval received
 
 ---
 
@@ -23,9 +24,9 @@ Implement only the approved scope.
 
 Do not:
 
-* refactor unrelated code
-* redesign architecture
-* introduce additional features
+- refactor unrelated code
+- redesign architecture
+- introduce additional features
 
 unless explicitly authorized.
 
@@ -35,15 +36,15 @@ unless explicitly authorized.
 
 Prefer:
 
-* minimal changes
-* reversible changes
-* documented changes
+- minimal changes
+- reversible changes
+- documented changes
 
 Maintain:
 
-* ADR compliance
-* IaC compliance
-* operational stability
+- compliance with approved Architectural Decisions (when applicable)
+- compliance with project governance (e.g. Infrastructure as Code - IaC requirements)
+- operational stability (when applicable)
 
 ---
 
@@ -51,9 +52,9 @@ Maintain:
 
 Every change must include:
 
-* verification method
-* rollback method
-* expected outcome
+- verification method
+- rollback method
+- expected outcome
 
 ---
 
@@ -61,10 +62,39 @@ Every change must include:
 
 Update documentation when:
 
-* behaviour changes
-* architecture changes
-* governance changes
-* operational procedures change
+- behaviour changes
+- architecture changes
+- governance changes
+- operational procedures change
+
+Document decisions proportionally.
+
+Do not create documentation unless it provides long-term value.
+
+When a decision should be preserved:
+
+- If it establishes or modifies a permanent project rule, create an Architectural Decisions (ADR).
+- Otherwise, document it within the corresponding analysis, review, or execution artifact when appropriate.
+
+Temporary reasoning, intermediate discussions, and decisions without lasting project impact should normally not be documented.
+
+Does the decision warrant being preserved?
+↓
+NO
+↓
+It is not documented.
+↓
+YES
+↓
+Does it change a permanent project rule?
+↓
+NO
+↓
+It is documented in the corresponding analysis, review, or execution.
+↓
+YES
+↓
+Create an ADR.
 
 ---
 
@@ -72,9 +102,9 @@ Update documentation when:
 
 Security controls must:
 
-* be evidence-based
-* be validated
-* be reversible
+- be evidence-based
+- be validated
+- be reversible
 
 Never deploy unvalidated hardening controls.
 
@@ -84,39 +114,39 @@ Never deploy unvalidated hardening controls.
 
 A change is complete only when:
 
-* implementation finished
-* validation passed
-* documentation updated
-* rollback documented
+- implementation finished
+- validation passed
+- documentation updated
+- rollback documented
 
 ## Evidence Requirements
 
 Execution proposals must identify:
 
-* evidence supporting the change
-* highest evidence level
-* validation gaps
+- evidence supporting the change
+- highest evidence level
+- validation gaps
 
-Execution based solely on E0 hypotheses is prohibited.
+Execution based solely on E0 hypotheses should not occur unless explicitly authorized.
 
-Execution based solely on E1 or E2 requires explicit justification.
+Execution based solely on E1 or E2 evidence requires explicit justification.
 
-E3 or higher is preferred whenever available.
+E3 or higher should be preferred whenever available.
 
 ## Confidence Requirements
 
 Execution recommendations must include:
 
-* evidence level
-* confidence level
-* validation gaps
+- evidence level
+- confidence level
+- validation gaps
 
 Execution should normally require:
 
 Confidence:
 HIGH
 
-or greater.
+or higher.
 
 Execution proposals with:
 
@@ -137,18 +167,16 @@ Before execution:
 
 Verify that:
 
-* ADRs
-* governance documents
-* correction plans
-* implementation requirements
+- ADRs
+- governance documents
+- correction plans
+- implementation requirements
 
 do not conflict.
 
 If conflicts exist:
 
-Activate:
-
-governance_arbiter
+Follow the project's governance conflict resolution process (e.g. activate governance_arbiter).
 
 Execution must be suspended until the conflict is resolved.
 
@@ -156,30 +184,18 @@ Execution must be suspended until the conflict is resolved.
 
 Before execution:
 
-Verify authority hierarchy compliance.
+Verify compliance with the project's Authority Hierarchy (e.g. docs/governance/AUTHORITY_HIERARCHY.md).
 
 Authority conflicts must be resolved before implementation begins.
-
-Use:
-
-docs/governance/AUTHORITY_HIERARCHY.md
 
 ## ADR Authority Validation
 
 Before implementing ADR-driven changes:
 
-Verify:
-
-docs/architecture/ADR_INDEX.md
+Verify the project's ADR Index (e.g. docs/architecture/ADR_INDEX.md) and confirm that the applicable Architectural Decisions are authoritative.
 
 Implementation based on superseded ADRs is prohibited.
 
 ## Skill Authority Validation
 
-Execution workflows may only rely on:
-
-ACTIVE
-
-skills registered in:
-
-docs/governance/SKILL_REGISTRY.md
+Execution workflows should rely only on active project capabilities (e.g. capabilities registered in the project's Skill Registry such as SKILL_REGISTRY.md).

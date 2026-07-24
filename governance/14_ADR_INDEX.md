@@ -1,19 +1,19 @@
 # ADR Index
+(Mainly focus on DevSecOps: Index of Architectural Decision Records)
 
 ## Purpose
-
-This document is the authoritative index of all ADRs in this repository.
+This document is the authoritative index of all Architectural Decision Records (ADRs) within this project.
 
 The objective is to:
 
-* identify active ADRs
-* identify superseded ADRs
-* identify deprecated ADRs
-* identify ADR relationships
-* improve governance consistency
-* improve AI reasoning reliability
+- identify active ADRs
+- identify superseded ADRs
+- identify deprecated ADRs
+- identify ADR relationships
+- improve governance consistency
+- improve AI reasoning reliability
 
-All ADR reviews should consult this index before evaluating architectural decisions.
+Architectural decision reviews should consult this index before evaluating architectural decisions.
 
 ---
 
@@ -25,12 +25,12 @@ Not all ADRs have equal status.
 
 An ADR may be:
 
-* Proposed
-* Accepted
-* Superseded
-* Deprecated
+- PROPOSED
+- APPROVED
+- SUPERSEDED
+- DEPRECATED
 
-Only active accepted ADRs are considered authoritative.
+Only APPROVED ADRs are considered authoritative.
 
 ---
 
@@ -62,9 +62,9 @@ Meaning: No longer recommended. Historical reference only. Not authoritative.
 
 ---
 
-## ADR Registry — Complete Index
+## ADR Registry
 
-### server_monitoring_2509 (Platform: Docker Compose, Python, IaC)
+### Project: server_monitoring_2509 (Platform: Docker Compose, Python, IaC)
 
 | ADR | Status | Category | Scope | Date | Title |
 |-----|--------|----------|-------|------|-------|
@@ -111,21 +111,24 @@ Meaning: No longer recommended. Historical reference only. Not authoritative.
 | ADR-0601 | APPROVED | ARCHITECTURE | System | 2026-06-11 | Estructura de Desacoplamiento de Capas mediante el Patrón Módulo-Commons |
 | ADR-0602 | APPROVED | ARCHITECTURE | System | 2026-06-11 | Estrategia de Comunicación Inter-Servicio en Arquitectura de Microservicios |
 | ADR-0603 | APPROVED | DATABASE | Database | 2026-06-11 | Políticas de Gestión de Bases de Datos en Microservicios |
+| ADR-0604 | APPROVED | ARCHITECTURE | System | 2026-07-16 | Patrón de Composición del API Gateway para Agregación de Datos Multi-Microservicio (BFF) |
+| ADR-0605 | APPROVED | SECURITY | System | 2026-07-20 | Modelo de Autorización RBAC por Prefijo de Ruta en el API Gateway |
+| ADR-0606 | APPROVED | ARCHITECTURE | System | 2026-07-22 | Patrón de Campos de Auditoría en Entidades de Negocio |
 
 ### Deployment & Frontend Strategy
 
 | ADR | Status | Category | Scope | Date | Title |
 |-----|--------|----------|-------|------|-------|
 | ADR-0801 | APPROVED | DEPLOYMENT | Infrastructure | 2026-06-11 | Estrategia de Empaquetado y Despliegue con Contenedores Docker |
-| ADR-0802 | APPROVED | ARCHITECTURE | System | 2026-06-11 | Lineamientos de Integración Frontend con Microservicios Backend |
-| ADR-0803 | APPROVED | SECURITY | Infrastructure | 2026-06-11 | Estrategias de Seguridad y Gestión de Secretos en Microservicios |
+| ADR-0802 | PROPOSED | ARCHITECTURE | System | 2026-06-11 | Lineamientos de Integración Frontend con Microservicios Backend |
+| ADR-0803 | PROPOSED | SECURITY | Infrastructure | 2026-06-11 | Estrategias de Seguridad y Gestión de Secretos en Microservicios |
 
 ---
 
 ## Active ADRs — Summary by Category
 
 ### ✅ ARCHITECTURE (APPROVED)
-ADR-0001, ADR-0002, ADR-0008, ADR-0600, ADR-0601, ADR-0602, ADR-0802
+ADR-0001, ADR-0002, ADR-0008, ADR-0600, ADR-0601, ADR-0602, ADR-0604, ADR-0606, ADR-0802
 
 ### ✅ RUNTIME (APPROVED)
 ADR-0003, ADR-0005, ADR-0010, ADR-0011, ADR-0012, ADR-0017, ADR-0027
@@ -134,7 +137,7 @@ ADR-0003, ADR-0005, ADR-0010, ADR-0011, ADR-0012, ADR-0017, ADR-0027
 ADR-0004, ADR-0014, ADR-0015, ADR-0028
 
 ### ✅ SECURITY (APPROVED)
-ADR-0013, ADR-0016, ADR-0018, ADR-0020, ADR-0021, ADR-0022, ADR-0023, ADR-0024, ADR-0025, ADR-0032, ADR-0803
+ADR-0013, ADR-0016, ADR-0018, ADR-0020, ADR-0021, ADR-0022, ADR-0023, ADR-0024, ADR-0025, ADR-0032, ADR-0605, ADR-0803
 
 ### ✅ DATABASE (APPROVED)
 ADR-0009, ADR-0603
@@ -166,7 +169,7 @@ If two ADRs appear to conflict:
 2. Verify supersession chain
 3. Only APPROVED ADRs are authoritative
 4. PROPOSED ADRs cannot override APPROVED ADRs
-5. Activate Governance Arbiter if required
+5. Escalate according to the project's governance process (e.g. Governance Arbiter)
 
 Do not assume newer ADRs automatically override older ADRs.
 
@@ -184,12 +187,12 @@ Only ADRs with Status: APPROVED are authoritative.
 
 ## AI Governance Rule
 
-AI assistants must consult ADR_INDEX.md before:
+AI assistants must consult this ADR_INDEX.md before:
 
-* ADR reviews
-* architecture reviews
-* hardening reviews
-* implementation recommendations
+- reviewing architectural decisions
+- reviewing architecture
+- producing implementation recommendations
+- evaluating architectural authority
 
 Failure to verify ADR status may produce invalid conclusions.
 

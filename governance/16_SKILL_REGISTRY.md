@@ -1,38 +1,41 @@
 # Skill Registry
+(General Purpose Use: Catalog of available specialists - describes which AI capabilities are available)
 
 ## Purpose
 
-This document is the authoritative registry of all AI skills used within this repository.
+This document is the authoritative registry of all AI Skills available within this project.
 
 The objective is to:
 
-* identify active skills
-* identify deprecated skills
-* identify superseded skills
-* identify skill ownership
-* identify governance dependencies
-* improve traceability
-* improve maintainability
+- identify available Skills
+- identify their lifecycle status
+- identify ownership and maintenance responsibility
+- identify governance dependencies
+- identify capability scope
+- improve traceability
+- improve maintainability
 
-All skills must be registered.
+All AI Skills must be registered.
 
-Unregistered skills are not authoritative.
+Unregistered Skills are not considered part of the project's governed AI capabilities.
 
 ---
 
 ## Fundamental Principles
 
-Skills support governance.
+Skills are specialised AI capabilities.
+
+Skills apply governance.
 
 Skills do not create governance.
 
 Skills must remain aligned with:
 
-* ADRs
-* Core Governance
-* Authority Hierarchy
+- Architectural Decisions (when applicable)
+- Core Governance
+- Authority Hierarchy
 
-Skills may become obsolete.
+Skills may evolve, become obsolete or be replaced.
 
 Skills require lifecycle management.
 
@@ -40,7 +43,7 @@ Skills require lifecycle management.
 
 ## Skill Lifecycle
 
-A skill may be:
+An AI Skill may have one of the following lifecycle states:
 
 PROPOSED
 
@@ -74,7 +77,7 @@ Approved skill.
 
 May be used.
 
-Governance compliant.
+Governance compliant at the time of its last review.
 
 ---
 
@@ -112,17 +115,17 @@ The following registry must be maintained.
 
 Columns:
 
-* Skill Name
-* Status
-* Owner
-* Version
-* Last Review
-* Superseded By
-* ADR Dependencies
+- Skill Name
+- Status
+- Owner
+- Version
+- Last Review
+- Superseded By
+- Governance Dependencies
 
 Example:
 
-| Skill | Status | Owner | Version | Last Review | Superseded By | ADR Dependencies |
+| Skill | Status | Owner | Version | Last Review | Superseded By | Governance Dependencies |
 |--------|--------|--------|--------|--------|--------|--------|
 | governance_reviewer | ACTIVE | Architecture | 1.0 | 2026-06-01 | - | ADR-0018 |
 | old_skill | SUPERSEDED | Architecture | 1.0 | 2026-01-01 | new_skill | ADR-0007 |
@@ -142,7 +145,7 @@ Status:
 Owner:
 Version:
 Last Review:
-ADR Dependencies:
+Governance Dependencies:
 Related Skills:
 
 ---
@@ -179,24 +182,22 @@ Reason:
 
 ## Governance Rule
 
-Every skill must appear in this registry.
+Every governed AI Skill must appear in this registry.
 
-Missing skills are considered:
+AI capabilities that are not registered are considered unmanaged.
 
-UNREGISTERED
-
-Unregistered skills are not authoritative.
+Unmanaged Skills should not be relied upon for project governance.
 
 ---
 
 ## Review Rule
 
-Every active skill must have:
+Every ACTIVE Skill must define at least:
 
-* owner
-* version
-* last review date
-* ADR dependency list
+- owner
+- version
+- last review date
+- governance dependencies
 
 Missing metadata indicates governance drift.
 
@@ -206,27 +207,22 @@ Missing metadata indicates governance drift.
 
 Skills must identify:
 
-* governing ADRs
-* governance dependencies
+- governing architectural decisions (when applicable)
+- governance dependencies
 
-If a governing ADR changes:
-
-Skill review becomes mandatory.
+When a governing document changes, affected Skills should be reviewed to ensure continued consistency.
 
 ---
 
 ## AI Governance Rule
 
-AI assistants should consult:
+AI assistants should consult this registry before:
 
-SKILL_REGISTRY.md
-
-before:
-
-* creating new skills
-* modifying skills
-* retiring skills
-* evaluating skill authority
+- introducing new Skills
+- modifying existing Skills
+- retiring Skills
+- selecting Skills for task execution
+- evaluating Skill applicability
 
 ---
 
@@ -235,3 +231,5 @@ before:
 Skills require governance.
 
 Governance requires traceability.
+
+Traceability enables trustworthy AI behaviour.
