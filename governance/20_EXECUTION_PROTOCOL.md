@@ -67,6 +67,35 @@ Update documentation when:
 - governance changes
 - operational procedures change
 
+Document decisions proportionally.
+
+Do not create documentation unless it provides long-term value.
+
+When a decision should be preserved:
+
+- If it establishes or modifies a permanent project rule, create an Architectural Decisions (ADR).
+- Otherwise, document it within the corresponding analysis, review, or execution artifact when appropriate.
+
+Temporary reasoning, intermediate discussions, and decisions without lasting project impact should normally not be documented.
+
+Does the decision warrant being preserved?
+↓
+NO
+↓
+It is not documented.
+↓
+YES
+↓
+Does it change a permanent project rule?
+↓
+NO
+↓
+It is documented in the corresponding analysis, review, or execution.
+↓
+YES
+↓
+Create an ADR.
+
 ---
 
 ## Security Changes

@@ -1,8 +1,17 @@
-# TEMPLATE: SKILL SPECIFICATION MODEL
-# Location: ai/templates/skill_definition.md
-# Reference: ai/governance/SKILL_ACTIVATION_MODEL.md
+# Skill Definition Template
+(Definition of a reusable project capability)
 
-# Skill Metadata
+---
+
+## Objective
+
+Define a reusable project capability that provides specialized analysis, review, validation, or execution support.
+
+Skills represent domain expertise and should be be activated only when their specialization is relevant to the current task.
+
+---
+
+## Skill Metadata
 
 Skill Name:
 [system_name_of_the_skill_in_snake_case]
@@ -22,28 +31,139 @@ Last Review:
 Superseded By:
 [NONE | Link to the replacing skill_name]
 
-ADR Dependencies:
-- [NONE | List of mandatory ADR-0XXX codes that restrict this skill]
+Architectural Decision Dependencies:
+- [NONE | List of mandatory ADR identifiers that govern or constrain this skill]
 
 Governance Dependencies:
-- [NONE | List of core governance documents required, e.g., DEVSECOPS_PRINCIPLES.md]
+- [NONE | List of applicable governance documents e.g., 02_DEVSECOPS_PRINCIPLES.md]
 
 Related Skills:
-- [List of skills that are frequently co-activated or complement this execution block]
+- [List of complementary or frequently co-activated skills]
 
 ---
 
-# Core Directive & Purpose
-[Clear, tight definition of what this skill does and why it exists in the system.
-Example: "Enforces strict container compliance by auditing runtime parameters."]
+## Scope
 
-# Execution Requirements
-- [Mandatory gate 1: e.g., Must read specific configuration file before acting]
-- [Mandatory gate 2: e.g., Must run local script check to verify compliance state]
+Describe the situations in which this skill should be used.
 
-# Behavior Rules & Constraints
-1. [Constraint 1: What the AI is FORBIDDEN to do when this skill is active]
-2. [Constraint 2: What formatting, logging, or language rules apply to its outputs]
+Examples:
 
-# Expected Validation Output
-[Describe the precise evidence the AI must print in the console to prove this skill was executed successfully.]
+- specialized technical analysis
+- knowledge-domain expertise
+- document review
+- implementation validation
+- research support
+- methodology guidance
+
+---
+
+## Purpose
+
+Describe:
+
+- the capability provided by the skill
+- the problems it is intended to solve
+- the expected value for the project
+
+---
+
+## Activation Criteria
+
+Describe when this skill should be activated.
+
+Examples:
+
+- specific project domains
+- particular document types
+- implementation changes
+- governance reviews
+- architectural decisions
+- research activities
+
+Also describe when this skill should normally not be activated.
+
+---
+
+## Required Inputs
+
+List the information or artifacts required before the skill can be applied.
+
+Examples:
+
+- project documentation
+- analysis reports
+- review reports
+- ADRs
+- governance documents
+- research sources
+- implementation evidence
+
+---
+
+## Behaviour Rules
+
+The skill should define:
+
+- mandatory actions
+- optional actions
+- prohibited actions
+
+The skill shall operate within the project's governance framework and authority hierarchy.
+
+---
+
+## Constraints
+
+Describe any limitations.
+
+Examples:
+
+- project-specific scope
+- required evidence level
+- restricted authority
+- dependency on other skills
+- required approvals
+- domain-specific limitations
+
+---
+
+## Expected Outputs
+
+Describe the expected deliverables.
+
+Examples:
+
+- findings
+- recommendations
+- validation results
+- identified risks
+- implementation guidance
+- review comments
+
+Outputs should clearly distinguish:
+
+- verified evidence
+- assumptions
+- recommendations
+
+The skill should not establish project authority unless explicitly authorized by the project's governance.
+
+---
+
+## Validation
+
+Describe how successful execution of the skill can be verified.
+
+Examples:
+
+- reviewed documents
+- evidence collected
+- validation performed
+- governance compliance verified
+- recommendations justified
+
+---
+
+## Notes
+
+Additional information that helps maintain or evolve the skill.
