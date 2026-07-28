@@ -10,7 +10,7 @@ Before performing any analysis, review, recommendation, or implementation task, 
 
 ## Context Resolution & Path Constraints
 
-*   **Strict Relative Resolution:**  AI assistants MUST NOT expect or attempt to access absolute OS filesystem paths (e.g., `/mnt/d/WorkSpace/...`). All internal governance references, skills, templates, and codebase analysis MUST be executed using relative workspace paths (`./`) or files explicitly attached to the active session via chat references (`./`).
+*   **Strict Relative Resolution:** AI assistants MUST NOT expect or attempt to access absolute OS filesystem paths (e.g., `/mnt/d/WorkSpace/...`). All internal governance references, skills, templates, and codebase analysis MUST be executed using relative workspace paths (`./`) or files explicitly attached to the active session via chat references (`./`).
 *   **Semantic Indexing:** To avoid expensive re-analysis and optimize token usage, AI assistants SHOULD connect to the project's Knowledge Provider as the first step during context collection. When available, the Knowledge Provider may use a pre-computed knowledge graph (currently planned as `./docs/arquitectura/.ua/knowledge-graph.json`) as its structural and semantic index. Repository documents remain the canonical source of truth. The underlying implementation may evolve without modifying this document.
 *   **Path Alignment:** Any absolute path mentioned in prompts or configurations must be automatically translated by the AI to its equivalent relative position within the active workspace root.
 
@@ -138,6 +138,8 @@ Use templates when appropriate:
 * docs/decisiones/04_adr_template.md
 * ai/templates/10_repository_event.md
 * ai/templates/20_skill_definition.md
+* ai/templates/30_knowledge_asset.md (when applicable)
+* ai/templates/31_relationship_record.md (when applicable)
 
 ---
 
@@ -206,7 +208,9 @@ Any modification affecting:
 
 ### Governing Principles — DevSecOps Infrastructure
 
-Reference: `ai/governance/02_DEVSECOPS_PRINCIPLES.md`
+Reference: `ai/governance/01_AI_CONSTITUTION.md`
+
+**Infrastructure Principles** (from `ai/governance/02_DEVSECOPS_PRINCIPLES.md`):
 
 **Container Principles:**
 * `cap_drop: ALL` by default
@@ -291,7 +295,7 @@ All infrastructure changes require:
 
 All infrastructure governance documentation:
 
-* Follows Spanish language policy (consistent with `02_DEVSECOPS_PRINCIPLES.md`, ADRs). (Note: The original authoritative reference documents and ADRs remain in Spanish) (see `ai/governance/22_USER_PREFERENCES.md`).
+* Follows the Spanish language policy (consistent with `02_DEVSECOPS_PRINCIPLES.md`, ADRs). (Note: The original authoritative reference documents and ADRs remain in Spanish) (see `ai/governance/22_USER_PREFERENCES.md`).
 * Uses consistent terminology from approved ADRs.
 * Must be auditable and referenceable.
 * Path references must be relative (`./` or `docs/decisiones/`)

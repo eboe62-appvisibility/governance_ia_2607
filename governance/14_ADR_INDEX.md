@@ -206,6 +206,27 @@ Every ADR supersession must update: ADR_INDEX.md
 
 ADR changes are incomplete until ADR_INDEX.md is updated.
 
+### Verification (run before closing any ADR-related task)
+
+This project has no CI pipeline — the AI assistant (or the user) is the validation gate (see `AI_ENTRYPOINT.md` § Self-Review Gate). These two one-line checks make that gate concrete instead of purely aspirational. Run from the repository root:
+
+**1. Every ADR file has exactly one row in the registry table:**
+```bash
+diff <(ls docs/decisiones/ADR-*.md | xargs -n1 basename | sed -E 's/^(ADR-[0-9]+).*/\1/' | sort) \
+     <(grep -oE "^\| ADR-[0-9]+" ai/governance/14_ADR_INDEX.md | tr -d '| ' | sort)
+```
+Empty output = every ADR file has exactly one table row (no missing, no orphaned rows).
+
+**2. Every APPROVED ADR in the table appears in the category summary:**
+```bash
+adrs=$(grep -oE "^\| ADR-[0-9]+ \| APPROVED" ai/governance/14_ADR_INDEX.md | grep -oE "ADR-[0-9]+")
+section=$(sed -n '/## Active ADRs/,/^## Deprecated/p' ai/governance/14_ADR_INDEX.md)
+for adr in $adrs; do echo "$section" | grep -q "$adr" || echo "MISSING: $adr"; done
+```
+No output = every APPROVED ADR appears in some category bucket.
+
+Both checks were validated against this repository's actual state (2026-07-28) and caught two real gaps before this rule existed: ADR-1100–1103 missing from the table entirely, and ADR-1101 missing from its category bucket.
+
 ---
 
 ## Final Principle
