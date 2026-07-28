@@ -1,5 +1,39 @@
 # Governance Arbiter
 
+## Skill Metadata
+
+Skill Name:
+governance_arbiter
+
+Status:
+ACTIVE
+
+Owner:
+Gobernanza
+
+Version:
+1.0.0
+
+Last Review:
+2026-07-29
+
+Superseded By:
+NONE
+
+Architectural Decision Dependencies:
+- NONE
+
+Governance Dependencies:
+- ai/governance/07_SKILL_ACTIVATION_MODEL.md
+- ai/governance/16_SKILL_REGISTRY.md
+- ai/governance/13_AUTHORITY_HIERARCHY.md
+- ai/governance/14_ADR_INDEX.md
+
+Related Skills:
+- NONE
+
+---
+
 ## Purpose
 
 The Governance Arbiter is responsible for resolving governance conflicts.
@@ -19,7 +53,7 @@ Not implementation.
 
 Skill authority must be validated through:
 
-docs/governance/SKILL_REGISTRY.md
+ai/governance/16_SKILL_REGISTRY.md
 
 Only ACTIVE skills are considered valid.
 
@@ -172,7 +206,7 @@ Escalate if unresolved.
 
 Authority must be determined using:
 
-docs/governance/AUTHORITY_HIERARCHY.md
+ai/governance/13_AUTHORITY_HIERARCHY.md
 
 The Governance Arbiter must never define its own hierarchy.
 
@@ -356,7 +390,7 @@ Before resolving ADR conflicts:
 
 Verify:
 
-docs/architecture/ADR_INDEX.md
+ai/governance/14_ADR_INDEX.md
 
 Determine:
 

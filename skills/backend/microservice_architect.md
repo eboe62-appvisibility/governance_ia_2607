@@ -1,6 +1,39 @@
 # microservice_architect.md
 
-Scope: Backend/frontend application layer (planned).
+## Skill Metadata
+
+Skill Name:
+microservice_architect
+
+Status:
+ACTIVE
+
+Owner:
+Arquitectura Backend
+
+Version:
+1.0.0
+
+Last Review:
+2026-07-29
+
+Superseded By:
+NONE
+
+Architectural Decision Dependencies:
+- NONE
+
+Governance Dependencies:
+- ai/governance/07_SKILL_ACTIVATION_MODEL.md
+- ai/governance/16_SKILL_REGISTRY.md
+- ai/governance/04_ARCHITECTURE_GUIDELINES.md
+
+Related Skills:
+- NONE
+
+---
+
+Scope: Backend/frontend application layer.
 
 ## Purpose
 

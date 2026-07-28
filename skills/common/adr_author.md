@@ -1,5 +1,39 @@
 # adr_author.md
 
+## Skill Metadata
+
+Skill Name:
+adr_author
+
+Status:
+ACTIVE
+
+Owner:
+Gobernanza / Arquitectura
+
+Version:
+1.0.0
+
+Last Review:
+2026-07-29
+
+Superseded By:
+NONE
+
+Architectural Decision Dependencies:
+- NONE
+
+Governance Dependencies:
+- ai/governance/07_SKILL_ACTIVATION_MODEL.md
+- ai/governance/16_SKILL_REGISTRY.md
+- ai/governance/13_AUTHORITY_HIERARCHY.md
+- ai/governance/14_ADR_INDEX.md
+
+Related Skills:
+- adr_reviewer
+
+---
+
 Role:
 
 ADR Author
