@@ -1,5 +1,38 @@
 # devsecops_architect.md
 
+## Skill Metadata
+
+Skill Name:
+devsecops_architect
+
+Status:
+ACTIVE
+
+Owner:
+DevSecOps / Infraestructura
+
+Version:
+1.0.0
+
+Last Review:
+2026-07-29
+
+Superseded By:
+NONE
+
+Architectural Decision Dependencies:
+- ADR-0017
+
+Governance Dependencies:
+- ai/governance/07_SKILL_ACTIVATION_MODEL.md
+- ai/governance/16_SKILL_REGISTRY.md
+- ai/governance/02_DEVSECOPS_PRINCIPLES.md
+
+Related Skills:
+- NONE
+
+---
+
 Role:
 DevSecOps Architect
 

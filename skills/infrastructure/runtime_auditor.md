@@ -1,5 +1,38 @@
 # runtime_auditor.md
 
+## Skill Metadata
+
+Skill Name:
+runtime_auditor
+
+Status:
+ACTIVE
+
+Owner:
+DevSecOps / Infraestructura
+
+Version:
+1.0.0
+
+Last Review:
+2026-07-29
+
+Superseded By:
+NONE
+
+Architectural Decision Dependencies:
+- NONE
+
+Governance Dependencies:
+- ai/governance/07_SKILL_ACTIVATION_MODEL.md
+- ai/governance/16_SKILL_REGISTRY.md
+- ai/governance/02_DEVSECOPS_PRINCIPLES.md
+
+Related Skills:
+- NONE
+
+---
+
 Role:
 Runtime Auditor (Authoritative Reference: Google SRE Manual - Golden Signals Method)
 
