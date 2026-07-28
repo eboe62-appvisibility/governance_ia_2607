@@ -1,5 +1,7 @@
 # state_management_reviewer.md
 
+Scope: Backend/frontend application layer.
+
 Role:
 
 State Management Reviewer

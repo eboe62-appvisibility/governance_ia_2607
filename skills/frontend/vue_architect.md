@@ -1,5 +1,7 @@
 # vue_architect.md
 
+Scope: Backend/frontend application layer.
+
 Role:
 
 Vue Architect

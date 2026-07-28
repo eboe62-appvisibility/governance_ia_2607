@@ -87,7 +87,6 @@ Examples:
 - 14_ADR_INDEX.md  (when applicable)
 - 16_SKILL_REGISTRY.md
 - 17_SKILL_LIFECYCLE.md
-- 19_AI_DECISION_REGISTRY.md
 - 20_EXECUTION_PROTOCOL.md  (when applicable)
 - 22_USER_PREFERENCES.md
 - 23_PROMPTING_GUIDE.md

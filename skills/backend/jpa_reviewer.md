@@ -1,5 +1,7 @@
 # jpa_reviewer.md
 
+Scope: Backend/frontend application layer.
+
 ## Purpose
 
 This skill reviews JPA and Hibernate persistence implementations.

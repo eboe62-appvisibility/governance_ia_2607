@@ -1,5 +1,7 @@
 # api_client_reviewer.md
 
+Scope: Backend/frontend application layer.
+
 Role:
 
 API Client Reviewer

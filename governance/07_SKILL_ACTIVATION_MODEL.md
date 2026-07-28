@@ -78,8 +78,8 @@ Examples:
 
 - infrastructure
 - software
-- backend
-- frontend
+- backend (when applicable)
+- frontend (when applicable)
 - governance
 - architecture
 - documentation

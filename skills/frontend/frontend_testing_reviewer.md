@@ -1,5 +1,7 @@
 # frontend_testing_reviewer.md
 
+Scope: Backend/frontend application layer.
+
 Role:
 
 Frontend Testing Reviewer
