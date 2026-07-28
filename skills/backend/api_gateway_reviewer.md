@@ -1,5 +1,7 @@
 # api_gateway_reviewer.md
 
+Scope: Backend/frontend application layer (planned).
+
 ## Purpose
 
 This skill reviews API Gateway implementations in distributed backend architectures.

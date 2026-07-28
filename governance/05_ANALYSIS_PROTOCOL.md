@@ -227,7 +227,7 @@ All findings must identify:
 - highest evidence level
 - missing evidence
 
-Use the project's Evidence Classification Model.
+Use the project's Evidence Classification Model (`docs/Project_Definition/05_EVIDENCE_CONFIDENCE.md`).
 
 Conclusions without identified evidence levels are considered incomplete.
 
@@ -286,12 +286,12 @@ Request clarification.
 When ADRs are referenced:
 
 Verify the status of the referenced ADR using the project's authoritative architectural documentation e.g.
-  docs/architecture/ADR_INDEX.md (when applicable)
+  ai/governance/14_ADR_INDEX.md (when applicable)
 
 or
 
 Determine authority using:
-  docs/governance/AUTHORITY_HIERARCHY.md
+  ai/governance/13_AUTHORITY_HIERARCHY.md
 
 Do not assume referenced ADRs remain active.
 
@@ -309,4 +309,4 @@ Verify that:
 
 using:
 using the project's Skill Registry e.g.
-  docs/governance/SKILL_REGISTRY.md
+  ai/governance/16_SKILL_REGISTRY.md

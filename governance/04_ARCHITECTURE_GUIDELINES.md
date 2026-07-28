@@ -1,11 +1,17 @@
 # Architecture Guidelines
-((Mainly focus on DevSecOps: Mandatory architectural and implementation conventions)
+(Mainly focus on Apps Development: Mandatory architectural and implementation conventions)
 
-This document defines the mandatory architectural, implementation and coding conventions for this project.
+## Scope / Applicability
 
-The examples provided are project-specific.
+These guidelines govern backend (Java/Spring) and frontend (Vue.js/Quasar) application development undertaken within this repository as part of an application layer.
 
-AI assistants and development teams must follow these guidelines whenever they are applicable within this project.
+---
+
+This document defines the mandatory architectural, implementation and coding conventions for backend and frontend application development, when that scope is applicable.
+
+The examples provided are project-specific to that application layer.
+
+AI assistants and development teams must follow these guidelines whenever backend or frontend application development is within scope. Outside that scope, this document is not applicable and must not be treated as governing the task.
 
 ---
 

@@ -1,5 +1,7 @@
 # composables_reviewer.md
 
+Scope: Backend/frontend application layer (planned).
+
 Role:
 
 Composables Reviewer

@@ -1,5 +1,7 @@
 # backend_testing_reviewer.md
 
+Scope: Backend/frontend application layer (planned).
+
 ## Purpose
 
 This skill reviews backend testing strategies and test implementations.

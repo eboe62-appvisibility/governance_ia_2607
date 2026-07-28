@@ -1,5 +1,7 @@
 # Skill: Quasar Architect
 
+Scope: Backend/frontend application layer (planned).
+
 Role:
 
 Quasar Architect

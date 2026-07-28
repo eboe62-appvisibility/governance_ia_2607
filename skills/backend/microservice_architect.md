@@ -1,5 +1,7 @@
 # microservice_architect.md
 
+Scope: Backend/frontend application layer (planned).
+
 ## Purpose
 
 This skill reviews and evaluates microservice architectures.

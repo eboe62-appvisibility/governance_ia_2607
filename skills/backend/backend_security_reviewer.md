@@ -1,5 +1,7 @@
 # backend_security_reviewer.md
 
+Scope: Backend/frontend application layer (planned).
+
 ## Purpose
 
 This skill reviews backend application security.

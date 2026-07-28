@@ -1,5 +1,7 @@
 # frontend_security_reviewer.md
 
+Scope: Backend/frontend application layer (planned).
+
 Role:
 
 Frontend Security Reviewer
