@@ -227,7 +227,7 @@ All findings must identify:
 - highest evidence level
 - missing evidence
 
-Use the project's Evidence Classification Model.
+Use the project's Evidence Classification Model (`docs/Project_Definition/05_EVIDENCE_CONFIDENCE.md`).
 
 Conclusions without identified evidence levels are considered incomplete.
 

@@ -344,7 +344,7 @@ When multiple versions exist, the user must explicitly identify the authoritativ
 
 ### Tooling
 
-*   Active tooling inventory documentation (e.g., tooling_*.txt or equivalent project tooling registry)
+* Active tooling inventory documentation (e.g., tooling_*.txt or equivalent project tooling registry)
 
 ### Knowledge Graph
 
