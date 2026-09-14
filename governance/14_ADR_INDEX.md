@@ -77,6 +77,8 @@ Meaning: No longer recommended. Historical reference only. Not authoritative.
 | ADR-0604 | APPROVED | ARCHITECTURE | System | 2026-07-16 | Patrón de Composición del API Gateway para Agregación de Datos Multi-Microservicio (BFF) |
 | ADR-0605 | APPROVED | SECURITY | System | 2026-07-20 | Modelo de Autorización RBAC por Prefijo de Ruta en el API Gateway |
 | ADR-0606 | APPROVED | ARCHITECTURE | System | 2026-07-22 | Patrón de Campos de Auditoría en Entidades de Negocio |
+| ADR-0607 | APPROVED | ARCHITECTURE | System | 2026-08-14 | Introducción del Microservicio `gda-comunicacion` para Noticias y Eventos (Espacio Justicia) |
+| ADR-0608 | APPROVED | INFRASTRUCTURE | System | 2026-08-14 | Estrategia de Almacenamiento de Adjuntos de Noticia (Espacio Justicia) |
 
 ### Deployment & Frontend Strategy
 
@@ -85,19 +87,20 @@ Meaning: No longer recommended. Historical reference only. Not authoritative.
 | ADR-0801 | APPROVED | DEPLOYMENT | Infrastructure | 2026-06-11 | Estrategia de Empaquetado y Despliegue con Contenedores Docker |
 | ADR-0802 | PROPOSED | ARCHITECTURE | System | 2026-06-11 | Lineamientos de Integración Frontend con Microservicios Backend |
 | ADR-0803 | PROPOSED | SECURITY | Infrastructure | 2026-06-11 | Estrategias de Seguridad y Gestión de Secretos en Microservicios |
+| ADR-0804 | PROPOSED | ARCHITECTURE | System | 2026-08-17 | Espacio Justicia como Frontend Alternativo a `GDA/frontend` — Repositorio, Stack y Entorno de Desarrollo |
 
 ---
 
 ## Active ADRs — Summary by Category
 
 ### ✅ ARCHITECTURE (APPROVED)
-ADR-0001, ADR-0002, ADR-0008, ADR-0600, ADR-0601, ADR-0602, ADR-0604, ADR-0606, ADR-0802
+ADR-0001, ADR-0002, ADR-0008, ADR-0600, ADR-0601, ADR-0602, ADR-0604, ADR-0606, ADR-0607, ADR-0802, ADR-0804
 
 ### ✅ RUNTIME (APPROVED)
 ADR-0003, ADR-0005, ADR-0010, ADR-0011, ADR-0012, ADR-0017, ADR-0027
 
 ### ✅ INFRASTRUCTURE (APPROVED)
-ADR-0004, ADR-0014, ADR-0015, ADR-0028
+ADR-0004, ADR-0014, ADR-0015, ADR-0028, ADR-0608
 
 ### ✅ SECURITY (APPROVED)
 ADR-0013, ADR-0016, ADR-0018, ADR-0020, ADR-0021, ADR-0022, ADR-0023, ADR-0024, ADR-0025, ADR-0032, ADR-0605, ADR-0803
