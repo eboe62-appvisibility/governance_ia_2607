@@ -77,8 +77,9 @@ Meaning: No longer recommended. Historical reference only. Not authoritative.
 | ADR-0604 | APPROVED | ARCHITECTURE | System | 2026-07-16 | Patrón de Composición del API Gateway para Agregación de Datos Multi-Microservicio (BFF) |
 | ADR-0605 | APPROVED | SECURITY | System | 2026-07-20 | Modelo de Autorización RBAC por Prefijo de Ruta en el API Gateway |
 | ADR-0606 | APPROVED | ARCHITECTURE | System | 2026-07-22 | Patrón de Campos de Auditoría en Entidades de Negocio |
-| ADR-0607 | APPROVED | ARCHITECTURE | System | 2026-08-14 | Introducción del Microservicio `gda-comunicacion` para Noticias y Eventos (Espacio Justicia) |
 | ADR-0608 | APPROVED | INFRASTRUCTURE | System | 2026-08-14 | Estrategia de Almacenamiento de Adjuntos de Noticia (Espacio Justicia) |
+| ADR-0609 | APPROVED | ARCHITECTURE | System | 2026-08-20 | Segregación de Espacio Justicia en un Backend Independiente ("SPJ") |
+| ADR-0610 | APPROVED | ARCHITECTURE | System | 2026-08-25 | Modelo de Identidad Multi-Aplicación en `gda-autenticacion` |
 
 ### Deployment & Frontend Strategy
 
@@ -94,7 +95,7 @@ Meaning: No longer recommended. Historical reference only. Not authoritative.
 ## Active ADRs — Summary by Category
 
 ### ✅ ARCHITECTURE (APPROVED)
-ADR-0001, ADR-0002, ADR-0008, ADR-0600, ADR-0601, ADR-0602, ADR-0604, ADR-0606, ADR-0607, ADR-0802, ADR-0804
+ADR-0001, ADR-0002, ADR-0008, ADR-0600, ADR-0601, ADR-0602, ADR-0604, ADR-0606, ADR-0609, ADR-0610
 
 ### ✅ RUNTIME (APPROVED)
 ADR-0003, ADR-0005, ADR-0010, ADR-0011, ADR-0012, ADR-0017, ADR-0027
@@ -103,7 +104,7 @@ ADR-0003, ADR-0005, ADR-0010, ADR-0011, ADR-0012, ADR-0017, ADR-0027
 ADR-0004, ADR-0014, ADR-0015, ADR-0028, ADR-0608
 
 ### ✅ SECURITY (APPROVED)
-ADR-0013, ADR-0016, ADR-0018, ADR-0020, ADR-0021, ADR-0022, ADR-0023, ADR-0024, ADR-0025, ADR-0032, ADR-0605, ADR-0803
+ADR-0013, ADR-0016, ADR-0018, ADR-0020, ADR-0021, ADR-0022, ADR-0023, ADR-0024, ADR-0025, ADR-0032, ADR-0605
 
 ### ✅ DATABASE (APPROVED)
 ADR-0009, ADR-0603
@@ -116,6 +117,14 @@ ADR-0019, ADR-0026
 
 ### ✅ GOVERNANCE (APPROVED)
 ADR-0000, ADR-0007, ADR-0029, ADR-0030, ADR-0031, ADR-0033
+
+---
+
+## Superseded ADRs
+
+| ADR | Status | Category | Scope | Date | Superseded By | Title |
+|-----|--------|----------|-------|------|---------------|-------|
+| ADR-0607 | SUPERSEDED | ARCHITECTURE | System | 2026-08-14 | ADR-0609 | Introducción del Microservicio `gda-comunicacion` para Noticias y Eventos (Espacio Justicia) |
 
 ---
 
