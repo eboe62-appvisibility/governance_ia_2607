@@ -246,14 +246,22 @@ ADR changes are incomplete until ADR_INDEX.md is updated.
 
 ### Verification (run before closing any ADR-related task)
 
-This project has no CI pipeline — the AI assistant (or the user) is the validation gate (see `AI_ENTRYPOINT.md` § Self-Review Gate). These two one-line checks make that gate concrete instead of purely aspirational. Run from the repository root:
+CI pipelines (where a project has one) do not validate ADRs — the AI assistant (or the user) is the validation gate (see `AI_ENTRYPOINT.md` § Self-Review Gate). These one-line checks make that gate concrete instead of purely aspirational. Run from the repository root of any consuming project:
 
-**1. Every ADR file has exactly one row in the registry table:**
+**1a. Every local ADR file has a row in the registry table:**
 ```bash
-diff <(ls docs/decisiones/ADR-*.md | xargs -n1 basename | sed -E 's/^(ADR-[0-9]+).*/\1/' | sort) \
-     <(grep -oE "^\| ADR-[0-9]+" ai/governance/14_ADR_INDEX.md | tr -d '| ' | sort)
+comm -23 <(ls docs/decisiones | grep -oE '^ADR-[0-9]+' | sort -u) \
+         <(grep -oE "^\| ADR-[0-9]+" ai/governance/14_ADR_INDEX.md | tr -d '| ' | sort -u)
 ```
-Empty output = every ADR file has exactly one table row (no missing, no orphaned rows).
+Empty output = no local ADR is missing from the registry.
+
+**1b. No ADR has more than one row in the registry table:**
+```bash
+grep -oE "^\| ADR-[0-9]+" ai/governance/14_ADR_INDEX.md | tr -d '| ' | sort | uniq -d
+```
+Empty output = no duplicated rows.
+
+The registry is integral (all projects), so rows without a local file are expected: they belong to other projects and are not an error.
 
 **2. Every APPROVED ADR in the table appears in the category summary:**
 ```bash
