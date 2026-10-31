@@ -11,7 +11,7 @@ Before performing any analysis, review, recommendation, or implementation task, 
 ## Context Resolution & Path Constraints
 
 *   **Strict Relative Resolution:** AI assistants MUST NOT expect or attempt to access absolute OS filesystem paths (e.g., `/mnt/d/WorkSpace/...`). All internal governance references, skills, templates, and codebase analysis MUST be executed using relative workspace paths (`./`) or files explicitly attached to the active session via chat references (`./`).
-*   **Semantic Indexing:** To avoid expensive re-analysis and optimize token usage, AI assistants SHOULD connect to the project's Knowledge Provider as the first step during context collection. When available, the Knowledge Provider may use a pre-computed knowledge graph (currently planned as `./docs/arquitectura/.ua/knowledge-graph.json`) as its structural and semantic index. Repository documents remain the canonical source of truth. The underlying implementation may evolve without modifying this document.
+*   **Semantic Indexing:** To avoid expensive re-analysis and optimize token usage, AI assistants SHOULD connect to the project's Knowledge Provider as the first step during context collection. When available, the Knowledge Provider may use a pre-computed knowledge graph (currently planned as `./docs/arquitectura/<project>/.ua/knowledge-graph.json`, reachable through the root symlink `./.ua`) as its structural and semantic index. Repository documents remain the canonical source of truth. The underlying implementation may evolve without modifying this document.
 *   **Path Alignment:** Any absolute path mentioned in prompts or configurations must be automatically translated by the AI to its equivalent relative position within the active workspace root.
 
 ---
@@ -320,7 +320,7 @@ When inconsistencies exist between ADRs and historical ledgers:
 
 **Highest priority documents:**
 
-* docs/Project_Definition/00_PROJECT_VISION_DigitalOcean_Definicion_Proyecto.txt
+* server_monitoring_2509: docs/Project_Definition/monitoring/00_PROJECT_VISION_DigitalOcean_Definicion_Proyecto.txt
 
 ## Authoritative Project Documentation
 
@@ -334,17 +334,19 @@ When multiple versions exist, the user must explicitly identify the authoritativ
 
 `docs/decisiones/` holds the ADRs of every project that shares this governance (ADR-0035). An ADR is binding only if it appears in the **Cross-project** section of `ai/governance/14_ADR_INDEX.md` or in the section of the **current project**. ADRs of other projects are reference material: they never override the current project's ADRs, instructions or context.
 
+`docs/` is the clone of `governance_ia_docs_2609` (ADR-0035). Besides `decisiones/`, each document type holds one folder per project (`<project>`: e.g. `monitoring`, `GDA`). Only the current project's folder is authoritative for that project.
+
 ### Project Definition
 
-* docs/Project_Definition/
+* docs/Project_Definition/<project>/
 
 ### Project Implementation
 
-* docs/Project_Implementation/
+* docs/Project_Implementation/<project>/
 
 ### Project Corrections
 
-* docs/Project_Corrections/
+* docs/Project_Corrections/<project>/
 
 ### Tooling
 
@@ -352,7 +354,7 @@ When multiple versions exist, the user must explicitly identify the authoritativ
 
 ### Knowledge Graph
 
-*   **Codebase Knowledge Graph:** `./docs/arquitectura/.ua/knowledge-graph.json` (Source of truth for codebase structure, dependencies, and semantic summaries - accessed via root symlink ./.ua/)
+*   **Codebase Knowledge Graph:** `./docs/arquitectura/<project>/.ua/knowledge-graph.json` (Source of truth for codebase structure, dependencies, and semantic summaries - accessed via root symlink ./.ua/)
 
 ### Infrastructure
 
