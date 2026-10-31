@@ -17,7 +17,7 @@
 - **Frontend dev/build:** `cd GDA/frontend && npm install && npm run dev` / `npm run lint` / `npm run build`
 
 ## Development Guidelines
-- Always prioritize explicit user instructions and approved ADRs (`docs/decisiones/`) over general defaults.
+- Always prioritize explicit user instructions and approved ADRs that apply to GDA over general defaults. `docs/decisiones/` holds the ADRs of every project (ADR-0035): only the GDA ones (06xx, 08xx) and the cross-project ones are binding here; the rest (e.g. server_monitoring_2509 00xx, Knowledge 11xx) are reference only.
 - Adhere to the principles in `ai/governance/05_ANALYSIS_PROTOCOL.md` and `ai/governance/20_EXECUTION_PROTOCOL.md`.
 - Respect microservice independence (ADR-0600): never introduce a root parent `pom.xml` that forces block compilation across modules.
 - Respect the Tier classification and layering rules in `ai/governance/04_ARCHITECTURE_GUIDELINES.md` before modifying backend or frontend application code.

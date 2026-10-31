@@ -161,6 +161,8 @@ Any modification affecting:
 
 ### Approved ADRs — Infrastructure Security
 
+**Scope:** the six ADRs below belong to server_monitoring_2509 and are binding only in that project (see § Architecture Decisions and ADR-0035). In other projects they are reference material.
+
 1. **ADR-0014 — Docker Port Exposure Policy**
    - `docs/decisiones/ADR-0014-docker_port_exposure_policy.md`
    - **Rule:** Port restricted to loopback (`127.0.0.1:port`) or internal Docker network
@@ -202,7 +204,7 @@ Any modification affecting:
    - **Validation:** `ops/services/postgres/scripts/check_postgres_secret.sh`
    - **CI Validation:** `make verify-security`
 
-**Note:** `ai/governance/14_ADR_INDEX.md` defines the governance model for managing ADRs. The project-specific ADR inventory is maintained under `docs/decisiones/` and evolves as new ADRs are approved.
+**Note:** `ai/governance/14_ADR_INDEX.md` defines the governance model for managing ADRs and lists every ADR by project. `docs/decisiones/` holds the ADRs of every project (ADR-0035); only those applicable to the current project are binding (see § Architecture Decisions).
 
 ---
 
@@ -330,6 +332,8 @@ When multiple versions exist, the user must explicitly identify the authoritativ
 
 * docs/decisiones/
 
+`docs/decisiones/` holds the ADRs of every project that shares this governance (ADR-0035). An ADR is binding only if it appears in the **Cross-project** section of `ai/governance/14_ADR_INDEX.md` or in the section of the **current project**. ADRs of other projects are reference material: they never override the current project's ADRs, instructions or context.
+
 ### Project Definition
 
 * docs/Project_Definition/
@@ -413,7 +417,7 @@ Mandatory rules:
 Priority order (Strict Downward Enforcement):
 
 1. Explicit user instructions
-2. Approved ADRs
+2. Approved ADRs applicable to the current project (Cross-project + current project's section in `14_ADR_INDEX.md`; ADR-0035)
 3. AI Constitution & DevSecOps Principles
 4. Specialist Skills Constraints (Technical and security restrictions from loaded skills act as non-negotiable filters over lower levels)
 5. Execution Protocol
