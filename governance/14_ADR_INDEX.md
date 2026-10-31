@@ -68,11 +68,17 @@ Integral registry: it lists the ADRs of every project that shares this governanc
 Each ADR is authoritative only within the scope of its own project, except the
 cross-project (transversal) ADRs, which apply to all of them.
 
+Location of the ADR files (ADR-0035): `decisiones/` of `governance_ia_docs_2609` is the
+reference and holds every ADR of every project. Each project keeps the complete set in
+its `docs/decisiones/`, identical to the reference, and applies only the ADRs that
+concern it.
+
 ### Cross-project (transversal)
 
 | ADR | Status | Category | Scope | Date | Title |
 |-----|--------|----------|-------|------|-------|
 | ADR-0033 | APPROVED | GOVERNANCE | System | 2026-06-17 | Taxonomía Oficial de Clasificación y Etiquetado de ADRs |
+| ADR-0035 | APPROVED | GOVERNANCE | System | 2026-10-31 | Consumo de la gobernanza y la documentación IA compartidas |
 
 ### Project: server_monitoring_2509 (Platform: Docker Compose, Python, IaC)
 
@@ -111,7 +117,6 @@ cross-project (transversal) ADRs, which apply to all of them.
 | ADR-0031 | APPROVED | GOVERNANCE | Runtime | 2026-05-26 | Gobernanza Runtime Docker y Clasificación de Dependencias Host |
 | ADR-0032 | APPROVED | SECURITY | Database | 2026-05-31 | Endurecimiento de gestión de secretos PostgreSQL y validaciones CI |
 | ADR-0034 | APPROVED | PROCESS | Process | 2026-10-30 | Política de ramas, promoción y despliegue a PRO |
-| ADR-0035 | APPROVED | GOVERNANCE | Process | 2026-10-31 | Consumo de la gobernanza IA compartida |
 
 ### Project: GDA — Backend (Java/Maven Multi-Module)
 
@@ -262,7 +267,10 @@ grep -oE "^\| ADR-[0-9]+" ai/governance/14_ADR_INDEX.md | tr -d '| ' | sort | un
 ```
 Empty output = no duplicated rows.
 
-The registry is integral (all projects), so rows without a local file are expected: they belong to other projects and are not an error.
+The registry is integral (all projects). With the complete set of ADRs in `docs/decisiones/` (ADR-0035) every row has a local file; a row without one means the local copy is out of date.
+
+**3. The local `docs/decisiones/` is identical to the reference (`governance_ia_docs_2609/decisiones/`):**
+Use the project's own tool (server_monitoring_2509: `make adr-check`). In a project whose `docs/` is the clone of `governance_ia_docs_2609`, check `git -C docs status` (clean) and `git -C docs fetch && git -C docs diff --stat HEAD origin/develop` (empty).
 
 **2. Every APPROVED ADR in the table appears in the category summary:**
 ```bash
