@@ -321,6 +321,7 @@ When inconsistencies exist between ADRs and historical ledgers:
 **Highest priority documents:**
 
 * server_monitoring_2509: docs/Project_Definition/monitoring/00_PROJECT_VISION_DigitalOcean_Definicion_Proyecto.txt
+* GDA: docs/Project_Definition/GDA/Documentacion_BackEnd_GDA_2511.txt and docs/Project_Definition/GDA/Documentacion_FrontEnd_GDA_2511.txt (GDA ADRs 06xx/08xx prevail over them)
 
 ## Authoritative Project Documentation
 
