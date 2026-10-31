@@ -68,10 +68,10 @@ Integral registry: it lists the ADRs of every project that shares this governanc
 Each ADR is authoritative only within the scope of its own project, except the
 cross-project (transversal) ADRs, which apply to all of them.
 
-Location of the ADR files (ADR-0035): `decisiones/` of `governance_ia_docs_2609` is the
-reference and holds every ADR of every project. Each project keeps the complete set in
-its `docs/decisiones/`, identical to the reference, and applies only the ADRs that
-concern it.
+Location of the ADR files (ADR-0035): every ADR of every project lives only in
+`decisiones/` of `governance_ia_docs_2609`, which each project mounts as `docs/`. Each
+project therefore sees the complete set in `docs/decisiones/` and applies only the
+cross-project ADRs and its own.
 
 ### Cross-project (transversal)
 
@@ -278,7 +278,7 @@ for adr in $adrs; do echo "$section" | grep -q "$adr" || echo "MISSING: $adr"; d
 No output = every APPROVED ADR appears in some category bucket.
 
 **3. The local `docs/decisiones/` is identical to the reference (`governance_ia_docs_2609/decisiones/`):**
-Use the project's own tool (server_monitoring_2509: `make adr-check`). In a project whose `docs/` is the clone of `governance_ia_docs_2609`, check `git -C docs status` (clean) and `git -C docs fetch && git -C docs diff --stat HEAD origin/develop` (empty).
+`docs/` is the clone of `governance_ia_docs_2609`: check `git -C docs status` (clean) and `git -C docs fetch && git -C docs diff --stat HEAD origin/develop` (empty).
 
 Checks 1 and 2 were validated against this repository's actual state (2026-07-28) and caught two real gaps before this rule existed: ADR-1100–1103 missing from the table entirely, and ADR-1101 missing from its category bucket.
 
