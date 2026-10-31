@@ -111,6 +111,7 @@ cross-project (transversal) ADRs, which apply to all of them.
 | ADR-0031 | APPROVED | GOVERNANCE | Runtime | 2026-05-26 | Gobernanza Runtime Docker y Clasificación de Dependencias Host |
 | ADR-0032 | APPROVED | SECURITY | Database | 2026-05-31 | Endurecimiento de gestión de secretos PostgreSQL y validaciones CI |
 | ADR-0034 | APPROVED | PROCESS | Process | 2026-10-30 | Política de ramas, promoción y despliegue a PRO |
+| ADR-0035 | APPROVED | GOVERNANCE | Process | 2026-10-31 | Consumo de la gobernanza IA compartida |
 
 ### Project: GDA — Backend (Java/Maven Multi-Module)
 
@@ -173,7 +174,7 @@ ADR-0801
 ADR-0019, ADR-0026
 
 ### ✅ GOVERNANCE (APPROVED)
-ADR-0000, ADR-0007, ADR-0029, ADR-0030, ADR-0031, ADR-0033
+ADR-0000, ADR-0007, ADR-0029, ADR-0030, ADR-0031, ADR-0033, ADR-0035
 
 ### ✅ PROCESS (APPROVED)
 ADR-0034, ADR-1102, ADR-1103
