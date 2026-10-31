@@ -269,9 +269,6 @@ Empty output = no duplicated rows.
 
 The registry is integral (all projects). With the complete set of ADRs in `docs/decisiones/` (ADR-0035) every row has a local file; a row without one means the local copy is out of date.
 
-**3. The local `docs/decisiones/` is identical to the reference (`governance_ia_docs_2609/decisiones/`):**
-Use the project's own tool (server_monitoring_2509: `make adr-check`). In a project whose `docs/` is the clone of `governance_ia_docs_2609`, check `git -C docs status` (clean) and `git -C docs fetch && git -C docs diff --stat HEAD origin/develop` (empty).
-
 **2. Every APPROVED ADR in the table appears in the category summary:**
 ```bash
 adrs=$(grep -oE "^\| ADR-[0-9]+ \| APPROVED" ai/governance/14_ADR_INDEX.md | grep -oE "ADR-[0-9]+")
@@ -280,7 +277,10 @@ for adr in $adrs; do echo "$section" | grep -q "$adr" || echo "MISSING: $adr"; d
 ```
 No output = every APPROVED ADR appears in some category bucket.
 
-Both checks were validated against this repository's actual state (2026-07-28) and caught two real gaps before this rule existed: ADR-1100–1103 missing from the table entirely, and ADR-1101 missing from its category bucket.
+**3. The local `docs/decisiones/` is identical to the reference (`governance_ia_docs_2609/decisiones/`):**
+Use the project's own tool (server_monitoring_2509: `make adr-check`). In a project whose `docs/` is the clone of `governance_ia_docs_2609`, check `git -C docs status` (clean) and `git -C docs fetch && git -C docs diff --stat HEAD origin/develop` (empty).
+
+Checks 1 and 2 were validated against this repository's actual state (2026-07-28) and caught two real gaps before this rule existed: ADR-1100–1103 missing from the table entirely, and ADR-1101 missing from its category bucket.
 
 ---
 
